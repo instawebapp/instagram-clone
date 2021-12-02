@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../../context/user";
 import { getAllStoriesExceptUserUploadedStory } from "../../services/firebase";
@@ -8,26 +8,22 @@ export default function SingleStory() {
   } = useContext(UserContext);
   const [stories, setStories] = useState([]);
   const [storiesAvailable, setStoriesAvailable] = useState(false);
-  const [time, setTime] = useState(false);
+  let _componentStatus = useRef(true);
   useEffect(() => {
     async function fetchData() {
       const response = await getAllStoriesExceptUserUploadedStory(userId);
       if (response) {
         setStories(response);
         setStoriesAvailable(true);
-        setTime(false);
       }
-
-      const timer = setTimeout(() => {
-        if (storiesAvailable === false) {
-          setTime(true);
-        }
-      }, 7000);
-
-      return () => clearTimeout(timer);
     }
-    fetchData();
-  }, [userId]);
+    if (_componentStatus) {
+      fetchData();
+    }
+    return () => {
+      _componentStatus.current = false;
+    };
+  }, [userId, storiesAvailable]);
 
   return (
     <>
@@ -53,9 +49,7 @@ export default function SingleStory() {
             );
           })}
         </>
-      ) : time && !storiesAvailable ? null : (
-        <p>Loading...</p>
-      )}
+      ) : null}
     </>
   );
 }

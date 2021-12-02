@@ -18,7 +18,7 @@ const Timeline = () => {
   }, []);
   return (
     <div className="container col-span-2">
-      {/* <Stories /> */}
+      <Stories />
       {!photos && time ? (
         <Skeleton count={4} width={640} height={500} className="mb-5" />
       ) : photos ? (

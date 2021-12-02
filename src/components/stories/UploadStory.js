@@ -1,6 +1,6 @@
 import { Modal, Button } from "react-bootstrap";
 import { VALID_IMAGE_FORMATS } from "../../constants/const";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { compress } from "../../helpers/compress";
 import { uploadStories, getUploadedStory } from "../../services/firebase";
 import UserContext from "../../context/user";
@@ -14,7 +14,6 @@ export default function UploadStory() {
   // uploaded story
   const [storyAvailable, setStoryAvailable] = useState(false);
   const [uploadedStory, setUploadedStory] = useState(null);
-  const [item, setItem] = useState(null);
   const [avatarFile, setAvatarFile] = useState(null);
   const [avatarIsChanged, setAvatarIsChanged] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -63,7 +62,7 @@ export default function UploadStory() {
     }
     return false;
   };
-
+  let _componentStatus = useRef(true);
   useEffect(() => {
     async function fetchData() {
       const response = await getUploadedStory(userId);
@@ -72,8 +71,13 @@ export default function UploadStory() {
         setStoryAvailable(true);
       }
     }
-    fetchData();
-  }, [userId, storyAvailable, uploadedStory]);
+    if (_componentStatus) {
+      fetchData();
+    }
+    return () => {
+      _componentStatus.current = false;
+    };
+  }, [userId, storyAvailable]);
 
   return (
     <>

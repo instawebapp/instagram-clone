@@ -1,16 +1,4 @@
 import { firebase, FieldValue } from "../lib/firebase";
-var counter = 0;
-console.log("counter", counter);
-// async function test() {
-//   const result = await firebase
-//     .firestore()
-//     .collection("users")
-//     .doc("EJF0T0ZBvr8MNGAKicJK")
-//     .get();
-//   console.log("result", result);
-// }
-// test();
-
 export async function createNewUserDocument(
   id,
   userName,
@@ -49,8 +37,6 @@ export async function DoesUsernameExist(name) {
 
 //  get user from firestore where userId === userId (passed from auth)
 export async function GetUserById(userId) {
-  counter++;
-  console.log("counter", counter);
   const result = await firebase
     .firestore()
     .collection("users")
@@ -107,8 +93,6 @@ export async function updateFollowedUserFollowers(
 }
 
 export async function getPhotos(userId, following) {
-  counter++;
-  console.log("counter", counter);
   const result = await firebase
     .firestore()
     .collection("photos")
@@ -265,6 +249,7 @@ export async function uploadStories(file, filepath, userId, startTime) {
 }
 
 export async function getUploadedStory(userId) {
+  console.log("nooo");
   try {
     const result = await firebase
       .firestore()
@@ -304,6 +289,7 @@ export async function getAllStories() {
         if (Math.round((end - item.start) / (1000 * 60 * 60)) >= 1) {
           return item;
         }
+        return null;
       });
       if (deleteStories) {
         // delete stories' images from storage
@@ -319,6 +305,7 @@ export async function getAllStories() {
 }
 
 export async function getAllStoriesExceptUserUploadedStory(userId) {
+  console.log("yesss");
   try {
     let result = await firebase.firestore().collection("stories").get();
     if (result) {
@@ -331,4 +318,55 @@ export async function getAllStoriesExceptUserUploadedStory(userId) {
   } catch (err) {
     console.log(err.message);
   }
+}
+
+export async function updatePostList(
+  userId,
+  addPost,
+  downloadURL,
+  createdTime,
+  caption
+) {
+  try {
+    // here photos -> post
+    await firebase
+      .firestore()
+      .collection("photos")
+      .add({
+        caption: caption,
+        comments: [],
+        dateCreated: Number(createdTime),
+        imageSrc: downloadURL,
+        likes: [],
+        photoId: Number(createdTime),
+        userId: userId,
+      });
+  } catch (err) {
+    console.log(err.message);
+  }
+}
+
+export async function uploadPost(file, filepath, userId, time, caption) {
+  // Get a reference to the storage service, which is used to create references in your storage bucket
+  const storageRef = firebase.storage().ref();
+  //  Create a child
+  const imagesRef = storageRef.child(filepath);
+  // imagesRef now points to 'images
+  const uploadTask = imagesRef.put(file);
+  uploadTask.on(
+    "state_changed",
+    (snapshot) => {},
+    (error) => {
+      console.log(error);
+    },
+    () => {
+      // on complte upload task
+      uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+        // update  post list
+        let addPost = true;
+        updatePostList(userId, addPost, downloadURL, time, caption);
+        return downloadURL;
+      });
+    }
+  );
 }

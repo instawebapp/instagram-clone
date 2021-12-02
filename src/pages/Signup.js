@@ -11,7 +11,6 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [error, setError] = useState("");
-  const [createdUser, setCreatedUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const componentWillUnmount = useRef(false);
   const isInValid =
@@ -38,7 +37,6 @@ const Signup = () => {
           .auth()
           .createUserWithEmailAndPassword(emailAddress, password);
         if (createdUserResult) {
-          setCreatedUser(createdUserResult.user);
           userId = createdUserResult.user.uid;
           console.log(createdUserResult.user, createdUserResult.user.uid);
           if (userId !== "") {

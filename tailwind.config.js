@@ -15,6 +15,8 @@ module.exports = {
       white: "#ffffff",
       blue: {
         medium: "#005c98",
+        light: "#113CFC",
+        extraLight: "#A2D2FF",
       },
       black: {
         light: "#262626",
@@ -25,6 +27,8 @@ module.exports = {
         base: "#616161",
         background: "#fafafa",
         primary: "#dbdbdb",
+        light: "#C9CCD5",
+        extraLight: "#E6E6E6",
       },
       red: {
         primary: "#ed4956",
@@ -32,12 +36,25 @@ module.exports = {
     },
     zIndex: { "-10": -10 },
     minHeight: {
+      x: "300px",
       xl: "420px",
       xxl: "488px",
       xxxl: "520px",
       sm: "640px",
       md: "768px",
       lg: "1024px",
+    },
+    minWidth: {
+      xl: "420px",
+      xxl: "488px",
+      xxxl: "520px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+    },
+    boxShadow: {
+      base: "3px 6px 6px rgba(0,0,0,0.1)",
+      primary: "2px 4px 4px rgba(0,0,0,0.1)",
     },
   },
   variants: {
