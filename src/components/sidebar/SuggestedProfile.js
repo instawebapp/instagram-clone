@@ -5,7 +5,7 @@ import {
   updateLoggedInUserFollowing,
   updateFollowedUserFollowers,
 } from "../../services/firebase";
-
+import Button from "../form/Button";
 export default function SuggestedProfile({
   username,
   profileDocId,
@@ -14,6 +14,12 @@ export default function SuggestedProfile({
   loggedInUserDocId,
 }) {
   const [followed, setFollowed] = useState(false);
+
+  const handleFollowKey = (e) => {
+    if (e.key == "Enter") {
+      handleFollowUser();
+    }
+  };
 
   async function handleFollowUser() {
     setFollowed(true);
@@ -25,24 +31,21 @@ export default function SuggestedProfile({
   }
 
   return !followed ? (
-    <div className="flex flex-row items-center justify-between ">
-      <div className="flex items-center justify-between ">
-        <img
-          src={`/images/avatars/${username}.jpg`}
-          alt={`${username}`}
-          className={"rounded-full w-8 h-8 flex mr-3"}
-        />
+    <div className="suggested_profile_section">
+      <div className="profile_img">
+        <img src={`/images/avatars/${username}.jpg`} alt={`${username}`} />
         <Link to={`/p/${username}`}>
-          <p className="font-bold text-sm">{username}</p>
+          <p className="text">{username}</p>
         </Link>
       </div>
-      <button
-        type="button"
-        className="font-bold text-xs text-blue-medium"
-        onClick={handleFollowUser}
-      >
-        Follow
-      </button>
+      <Button
+        btnType={"button"}
+        btnClass={"btn follow_btn"}
+        btnTitle={"Follow"}
+        icon={""}
+        handleClick={handleFollowUser}
+        handleKey={handleFollowKey}
+      />
     </div>
   ) : null;
 }

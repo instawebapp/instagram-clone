@@ -23,13 +23,13 @@ export default function Suggestions({ userId, following, loggedInUserDocId }) {
 
   // go ahead and render (wait on the profiles as in skeleton)
   return !profiles ? (
-    <Skeleton count={1} height={150} className="mt-5" />
+    <Skeleton count={1} height={150} style={{ marginTop: "1.25rem" }} />
   ) : profiles.length > 0 ? (
-    <div className="rounded flex flex-col">
-      <div className="text-sm flex items-center align-items justify-between mb-2">
-        <p className="font-bold text-gray-base">Suggsetions for you</p>
+    <div className="suggestions_section">
+      <div className="suggestions_title">
+        <p className="">Suggsetions for you</p>
       </div>
-      <div className="grid mt-4 gap-5">
+      <div className="details">
         {profiles.length > 0 &&
           profiles.map((profile) => {
             return (

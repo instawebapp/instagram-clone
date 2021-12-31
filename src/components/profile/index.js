@@ -32,7 +32,7 @@ export default function Profile({ user }) {
   }, [user, user.username]);
   console.log(photosCollection, "PC");
   return (
-    <>
+    <div>
       <Header
         photosCount={photosCollection ? photosCollection.length : 0}
         profile={profile}
@@ -40,6 +40,6 @@ export default function Profile({ user }) {
         setFollowerCount={dispatch}
       />
       <Photos photosCollection={photosCollection} />
-    </>
+    </div>
   );
 }

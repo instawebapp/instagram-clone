@@ -2,18 +2,18 @@ import Skeleton from "react-loading-skeleton";
 export default function photosCollection({ photosCollection }) {
   console.log(photosCollection, "PP");
   return (
-    <div className="h-16 border-t border-gry-primary mt-12 pt4">
-      <div className="grid grid-cols-3 gap-8 mt-4 mb-12">
+    <div className="photos_container">
+      <div className="photos">
         {!photosCollection ? (
-          <>
+          <div>
             <Skeleton count={12} width={320} height={400} />
-          </>
+          </div>
         ) : photosCollection.length > 0 ? (
           photosCollection.map((photo) => (
-            <div key={photo.docId} className="relative group">
+            <div key={photo.docId} className="photo">
               <img src={photo.imageSrc} alt={photo.caption} />
-              <div className="absolute bottom-0 left-0 z-10 h-full w-full justify-evenly bg-black-faded group-hover:flex hidden">
-                <p className="flex items-center text-white font-bold">
+              <div className="icons">
+                <p className="like_icon">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -28,7 +28,7 @@ export default function photosCollection({ photosCollection }) {
                   </svg>
                   {photo.likes.length}
                 </p>
-                <p className="flex items-center text-white font-bold">
+                <p className="comment_icon">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -49,9 +49,7 @@ export default function photosCollection({ photosCollection }) {
         ) : null}
       </div>
       {!photosCollection ||
-        (photosCollection.length === 0 && (
-          <p className="text-center text-2xl">No Posts Yet</p>
-        ))}
+        (photosCollection.length === 0 && <p className="text">No Posts Yet</p>)}
     </div>
   );
 }

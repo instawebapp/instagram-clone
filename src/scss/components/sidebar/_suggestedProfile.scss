@@ -1,0 +1,24 @@
+.suggested_profile_section {
+  @include flexCenterBetween;
+  .profile_img {
+    @include flexCenterBetween;
+    img {
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      margin-right: 0.75rem;
+      border-radius: 50%;
+    }
+    .text {
+      font-weight: bold;
+      font-size: 1rem;
+      line-height: 1.25rem;
+    }
+  }
+  .follow_btn {
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1rem;
+    color: $white;
+  }
+}

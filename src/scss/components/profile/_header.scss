@@ -1,0 +1,54 @@
+.user_profile_header {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-gap: 1rem;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: $screen-lg;
+  .user_profile_avatar {
+    @include flexCenterCenter;
+    width: 100%;
+    img {
+      width: 10rem;
+      height: 10rem;
+      display: flex;
+      border-radius: 50%;
+    }
+  }
+  .user_profile_details {
+    @include flexColCenterCenter;
+    grid-column: 2/4;
+    .info {
+      width: 100%;
+      @include flexItemsCenter;
+      .text {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        margin-right: 1rem;
+      }
+    }
+    .count_list {
+      display: flex;
+      width: 100%;
+      .count {
+        width: 100%;
+        display: flex;
+        margin-top: 1rem;
+        .title {
+          margin-right: 2.5rem;
+          .text {
+            font-weight: bold;
+            margin-right: 0.75rem;
+          }
+        }
+      }
+    }
+    .username {
+      width: 100%;
+      margin-top: 1rem;
+      .fullname {
+        font-weight: 600;
+      }
+    }
+  }
+}

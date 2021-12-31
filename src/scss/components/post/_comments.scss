@@ -1,0 +1,42 @@
+.post_comments {
+  padding: 0.25rem 1rem 1rem;
+  .comment_title {
+    display: flex;
+    .text {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      color: $gray-base;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+    }
+  }
+  .comment {
+    margin-bottom: 0.25rem;
+    .text {
+      font-size: 1.1rem;
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+  }
+  .comment_title_animation {
+    // display: none;
+    transition: transform 0.5s ease-out;
+    p {
+      margin-bottom: 0.25rem;
+      font-size: 1.1rem;
+      .text {
+        font-size: 1.1rem;
+        margin-right: 0.5rem;
+        font-weight: bold;
+      }
+    }
+  }
+  .post_timing {
+    font-weight: 700;
+    color: $gray-base;
+    text-transform: capitalize;
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+}

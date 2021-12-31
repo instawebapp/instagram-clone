@@ -1,0 +1,24 @@
+.post_actions {
+  //   @include flexJustifyCenter;
+  padding: 1rem;
+  .actions_items {
+    @include flexItemsCenter;
+    .icon {
+      width: 2rem;
+      margin-right: 1rem;
+      user-select: none;
+      -webkit-user-select: none;
+      cursor: pointer;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.likes_count {
+  padding: 0rem 1rem;
+  p {
+    font-weight: bold;
+  }
+}

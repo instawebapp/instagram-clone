@@ -26,21 +26,17 @@ export default function SingleStory() {
   }, [userId, storiesAvailable]);
 
   return (
-    <>
+    <div>
       {stories.length > 0 && storiesAvailable ? (
-        <>
+        <div>
           {stories.map((item, index) => {
             return (
-              <div
-                className="flex flex-col items-center justify-center mr-8"
-                key={index}
-              >
-                <div className="w-12 h-12 rounded-full bg-gray-primary mt-2 border-2 border-gray-primary">
+              <div className="single_story_section" key={index}>
+                <div className="single_story">
                   <Link to={`/stories/${item.start}`}>
                     <img
                       src="/images/avatars/default.png"
                       alt={item.username}
-                      className="w-full h-full bg-white rounded-full cursor-pointer"
                     />
                   </Link>
                 </div>
@@ -48,8 +44,8 @@ export default function SingleStory() {
               </div>
             );
           })}
-        </>
+        </div>
       ) : null}
-    </>
+    </div>
   );
 }

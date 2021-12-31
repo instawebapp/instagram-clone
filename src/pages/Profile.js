@@ -22,9 +22,9 @@ export default function Profile() {
   }, [username, history]);
 
   return user?.username ? (
-    <div className="bg-gray-background">
+    <div className="profile">
       <Header />
-      <div className="mx-auto max-w-screen-lg">
+      <div className="profile_section">
         <UserProfile user={user} />
       </div>
     </div>

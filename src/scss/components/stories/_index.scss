@@ -1,0 +1,12 @@
+.stories_container {
+  @include flexItemsCenter;
+  border-radius: 0.25rem;
+  background: $white;
+  border: 1px solid $gray-primary;
+  margin-bottom: 2.5rem;
+  padding: 0 1rem;
+  .single_stories_section {
+    @include flexItemsCenter;
+    width: 100%;
+  }
+}

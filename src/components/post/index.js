@@ -15,7 +15,7 @@ export default function Post({ content }) {
   };
 
   return (
-    <div className="rounded  bg-white border border-gray-primary mb-12 col-span-4">
+    <div className="post_container">
       <Header username={content.username} />
       <Image src={content.imageSrc} caption={content.caption} />
       <Actions

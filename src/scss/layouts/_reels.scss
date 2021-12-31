@@ -1,0 +1,19 @@
+.app_video_container {
+  position: relative;
+  height: 80vh;
+  width: 70%;
+  background: transparent;
+  max-width: 450px;
+  max-height: 1200px;
+  overflow: scroll;
+  margin-top: 1.25rem;
+  margin: auto;
+  border-radius: 1.5rem;
+  scrollbar-width: none;
+  //   ms-overflow-style: none;
+  scroll-snap-type: y mandayory;
+}
+
+.app_video_container::-webkit-scrollbar {
+  display: none;
+}

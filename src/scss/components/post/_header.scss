@@ -1,0 +1,22 @@
+.post_header {
+  display: flex;
+  border-bottom: 1px solid $gray-primary;
+  height: 1rem;
+  padding: 2rem 1rem;
+  .details {
+    @include flexItemsCenter;
+    .info {
+      @include flexItemsCenter;
+      img {
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        margin-right: 0.75rem;
+        border-radius: 50%;
+      }
+      .text {
+        font-weight: bold;
+      }
+    }
+  }
+}

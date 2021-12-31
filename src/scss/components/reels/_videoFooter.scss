@@ -1,0 +1,53 @@
+.video_footer {
+  position: absolute;
+  bottom: 1rem;
+  margin-left: 1.25rem;
+  .video_footer_text {
+    position: absolute;
+    bottom: 0%;
+    display: flex;
+    margin-bottom: 1.25rem;
+    color: $white;
+    .btn {
+      text-transform: inherit;
+      color: $white;
+    }
+  }
+  .video_footer_ticker {
+    .video_footer_icon {
+      .music_icon {
+        position: absolute;
+        left: 0.25rem;
+        color: $white;
+      }
+      .ticker {
+        margin-left: 1.75rem;
+        margin-bottom: 1.25rem;
+        width: 60%;
+        height: fit-content;
+      }
+    }
+  }
+  .video_footer_actions {
+    position: absolute;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    color: $white;
+    .video_Footer_actionleft {
+      .icon {
+        padding: 0rem 0.5rem;
+      }
+    }
+    .video_footer_actionright {
+      display: flex;
+      .video_footer_stat {
+        @include flexItemsCenter;
+        margin-right: 0.5rem;
+        .text {
+          margin-left: 0.25rem;
+        }
+      }
+    }
+  }
+}

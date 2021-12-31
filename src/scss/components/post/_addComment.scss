@@ -1,0 +1,24 @@
+.add_comment_section {
+  border-top: 1px solid $gray-primary;
+  .form {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0rem;
+    padding-right: 1.25rem;
+    .comment_input {
+      font-size: 1rem;
+      line-height: 1.25rem;
+      color: $gray-base;
+      width: 100%;
+      margin-right: 0.75rem;
+      padding: 1.25rem 1rem;
+    }
+    .add_btn {
+      font-size: 1rem;
+      line-height: 1.25rem;
+      color: $white;
+      height: 1rem;
+      margin: auto;
+    }
+  }
+}

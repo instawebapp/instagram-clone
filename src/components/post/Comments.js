@@ -12,41 +12,36 @@ export default function Comments({
   const [comments, setComments] = useState(allComments);
   const [show, setShow] = useState(false);
   return (
-    <>
-      <div className="p-4 pt-1 pb-4">
+    <div>
+      <div className="post_comments">
         {comments.length >= 3 && (
-          <div className="flex">
-            <p
-              className="text-sm text-gray-base mb-2 cursor-pointer"
-              onClick={() => setShow(!show)}
-            >
+          <div className="comment_title">
+            <p className="text" onClick={() => setShow(!show)}>
               View all {comments.length} comments
             </p>
           </div>
         )}
         {comments.slice(0, 2).map((item) => (
-          <p key={`${item.comment}-${item.displayName}`} className="mb-1">
+          <p key={`${item.comment}-${item.displayName}`} className="comment">
             <Link to={`/p/${item.displayName}`}>
-              <span className="mr-2 font-bold">{item.displayName}</span>
+              <span className="text">{item.displayName}</span>
             </Link>
             <span>{item.comment}</span>
           </p>
         ))}
         {show && (
-          <div
-            className={` "transform transition duration-500 ease-out"  ${show}?"block":"hidden"`}
-          >
+          <div className={`comment_title_animation ${show}?" show":" hide" `}>
             {comments.slice(2, comments.length).map((item) => (
-              <p key={`${item.comment}-${item.displayName}`} className="mb-1">
+              <p key={`${item.comment}-${item.displayName}`}>
                 <Link to={`/p/${item.displayName}`}>
-                  <span className="mr-2 font-bold">{item.displayName}</span>
+                  <span className="text">{item.displayName}</span>
                 </Link>
                 <span>{item.comment}</span>
               </p>
             ))}
           </div>
         )}
-        <p className="font-semibold text-gray-base capitalize text-xs mt-4">
+        <p className="post_timing">
           {formatDistance(posted, new Date())} ago
         </p>
       </div>
@@ -56,7 +51,7 @@ export default function Comments({
         setComments={setComments}
         commentInput={commentInput}
       />
-    </>
+    </div>
   );
 }
 

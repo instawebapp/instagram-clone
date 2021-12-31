@@ -31,9 +31,9 @@ export default function Actions({
   };
 
   return (
-    <>
-      <div className="flex justify-between p-4">
-        <div className="flex items-center">
+    <div>
+      <div className="post_actions">
+        <div className="actions_items">
           <svg
             onClick={handleToggleLiked}
             onKeyDown={(event) => {
@@ -42,10 +42,8 @@ export default function Actions({
               }
             }}
             aria-label="Like"
-            className={`w-8 mr-4 select-none cursor-pointer focus:outline-none ${
-              toggleLiked ? "fill-red text-red-primary" : "text-black-light"
-            }`}
-            fill="#262626"
+            className="icon"
+            fill={`${toggleLiked ? "#ed4956" : "#262626"}`}
             height="28"
             role="img"
             viewBox="0 0 48 48"
@@ -62,7 +60,7 @@ export default function Actions({
                 handleFocus();
               }
             }}
-            className="w-8 text-black-light select-none cursor-pointer focus:outline-none"
+            className="icon"
             fill="#262626"
             height="24"
             role="img"
@@ -78,12 +76,10 @@ export default function Actions({
           </svg>
         </div>
       </div>
-      <div className="p-4 py-0">
-        <p className="font-bold">
-          {likes === 1 ? `${likes} like` : `${likes} likes`}
-        </p>
+      <div className="likes_count">
+        <p>{likes === 1 ? `${likes} like` : `${likes} likes`}</p>
       </div>
-    </>
+    </div>
   );
 }
 

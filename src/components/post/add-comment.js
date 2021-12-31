@@ -32,9 +32,9 @@ export default function AddComment({
   };
 
   return (
-    <div className="border-t border-gray-primary">
+    <div className="add_comment_section">
       <form
-        className="flex justify-between pl-0 pr-5"
+        className="form"
         method="POST"
         onSubmit={(e) =>
           comment.length >= 1 ? handleSubmitComment(e) : e.preventDefault()
@@ -43,7 +43,7 @@ export default function AddComment({
         <input
           arai-label="add a comment"
           type="text"
-          className="text-sm text-gray-base w-full mr-3 py-5 px-4"
+          className="input comment_input"
           name="add-comment"
           autoComplete="off"
           placeholder="Add a comment"
@@ -52,9 +52,7 @@ export default function AddComment({
           ref={commentInput}
         />
         <button
-          className={`text-sm font-bold text-blue-medium ${
-            !comment && "opacity-25"
-          }`}
+          className="add_btn btn"
           disabled={comment.length < 1}
           type="button"
           onClick={handleSubmitComment}

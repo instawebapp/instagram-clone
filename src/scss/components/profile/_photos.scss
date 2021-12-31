@@ -1,0 +1,41 @@
+.photos_container {
+  height: 4rem;
+  border-top: 1px solid $gray-primary;
+  margin-top: 3rem;
+  padding-top: 1rem;
+  .photos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-gap: 2rem;
+    margin: 1rem 0 3rem;
+    .photo {
+      position: relative;
+      .icons {
+        position: absolute;
+        bottom: 0%;
+        left: 0%;
+        height: 100%;
+        width: 100%;
+        z-index: 10;
+        display: none;
+        justify-content: space-evenly;
+        background: $black-faded;
+        &:hover {
+          display: flex;
+        }
+        .like_icon,
+        .comment_icon {
+          @include flexItemsCenter;
+          color: $white;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .text {
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}

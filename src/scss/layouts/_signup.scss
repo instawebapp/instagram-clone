@@ -1,0 +1,49 @@
+.signup_container {
+  @include flexCenterCenter;
+  margin: 0 auto;
+  height: 100vh;
+  width: 100%;
+  max-width: $screen-md;
+  overflow: hidden;
+  .signup_poster {
+    display: flex;
+    width: 60%;
+    img {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  .signup_form_section {
+    @include flexCol;
+    width: 80%;
+    margin: 0 auto;
+    .signup_details_section {
+      background: $white;
+      border: 1px solid $gray-primary;
+      padding: 1rem 2rem;
+      margin-bottom: 1rem;
+      border-radius: 0.25rem;
+      .logo {
+        @include flexJustifyCenter;
+        width: 100%;
+        position: relative;
+        img {
+          margin-top: 0.5rem;
+          margin-bottom: 1rem;
+          width: 50%;
+        }
+      }
+      form {
+        width: 100%;
+        .signup_btn {
+          font-size: 1.3rem;
+          margin: 1rem auto;
+          background: $blue-medium;
+          color: $white;
+          width: 50%;
+        }
+      }
+    }
+  }
+}

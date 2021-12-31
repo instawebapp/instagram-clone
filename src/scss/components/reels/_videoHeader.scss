@@ -1,0 +1,14 @@
+.video_header {
+  @include flexCenterBetween;
+  position: absolute;
+  width: 100%;
+  color: $white;
+  .title,
+  .icon {
+    padding: 1.25rem;
+  }
+}
+
+.video_header > * {
+  padding: 1.25rem;
+}

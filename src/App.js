@@ -6,6 +6,8 @@ import useAuthListener from "./hooks/use-auth-listener";
 import ProtectedRoute from "./helpers/protected-route";
 import IsUserLoggedIn from "./helpers/is-user-logged-in";
 import Upload from "./pages/Upload";
+import Reels from "./pages/Reels";
+import "./assets/css/main.min.css";
 const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./pages/Signup"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -40,6 +42,7 @@ function App() {
             <Route path={ROUTES.PROFILE} component={Profile} />
             <Route path="/stories/:id" component={Story} />
             <Route path="/upload" component={Upload} />
+            <Route path="/reels" component={Reels} />
             <Route path={ROUTES.NOT_FOUND} component={NotFound} />
           </Switch>
         </Suspense>

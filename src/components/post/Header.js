@@ -2,15 +2,11 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 export default function Header({ username }) {
   return (
-    <div className="flex border-b border-gray-primary h-4 p-4 py-8">
-      <div className="flex items-center">
-        <Link to={`/p/${username}`} className="flex items-center">
-          <img
-            className="rounded-full w-8 h-8 flex mr-3"
-            src={`/images/avatars/${username}.jpg`}
-            alt={`${username}`}
-          />
-          <p className="font-bold">{username}</p>
+    <div className="post_header">
+      <div className="details">
+        <Link to={`/p/${username}`} className="info">
+          <img src={`/images/avatars/${username}.jpg`} alt={`${username}`} />
+          <p className="text">{username}</p>
         </Link>
       </div>
     </div>

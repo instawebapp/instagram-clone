@@ -5,6 +5,7 @@ import { compress } from "../../helpers/compress";
 import { uploadStories, getUploadedStory } from "../../services/firebase";
 import UserContext from "../../context/user";
 import { Link } from "react-router-dom";
+import FileInput from "../form/FileInput";
 export default function UploadStory() {
   const {
     user: { uid: userId },
@@ -80,27 +81,25 @@ export default function UploadStory() {
   }, [userId, storyAvailable]);
 
   return (
-    <>
+    <div>
       {storyAvailable && uploadedStory ? (
-        <div className="flex flex-col items-center justify-center mr-8">
-          <div className="w-12 h-12 rounded-full bg-gray-primary mt-2 border-2 border-gray-primary">
+        <div className="uploaded_story_section">
+          <div className="uploaded_story">
             <Link to={`/stories/${uploadedStory.start}`}>
-              <img
-                src={uploadedStory.url}
-                alt="khjhj"
-                className="w-full h-full bg-white rounded-full cursor-pointer"
-              />
+              <img src={uploadedStory.url} alt="khjhj" />
             </Link>
           </div>
           <h2 className="">user</h2>
         </div>
       ) : (
-        <>
+        <div>
           <Modal show={show} onHide={handleClose} centered size="lg">
             <Modal.Body
-              className="object-cover w-full  min-h-xxl"
               style={{
                 background: `url(${avatar}) center center/cover no-repeat`,
+                width: "100%",
+                objectFit: "cover",
+                minHeight: "488px",
               }}
             ></Modal.Body>
             <Modal.Footer>
@@ -112,26 +111,23 @@ export default function UploadStory() {
               </Button>
             </Modal.Footer>
           </Modal>
-          <div className="flex flex-col items-center justify-center mr-6">
-            <div className="relative w-12 h-12 rounded-full bg-gray-primary mt-2 border-2 border-gray-primary">
-              <img
-                src="/images/avatars/orwell.jpg"
-                alt="khjhj"
-                className="w-full h-full bg-white rounded-full cursor-pointer"
-              />
-              <form className="bg-transparent absolute top-0 left-0  w-full h-full">
-                <input
-                  type="file"
-                  name="file"
-                  onChange={handleUpload}
-                  className="text-transparent bg-transparent mt-2 rounded-full w-12 h-12 opacity-0 cursor-pointer"
-                />
+          <div className="upload_story_section">
+            <div className="upload_story">
+              <img src="/images/avatars/orwell.jpg" alt="khjhj" />
+              <form className="form">
+                <div className="file">
+                  <FileInput
+                    inputClass=""
+                    ariaLable="Upload Story"
+                    handleChange={handleUpload}
+                  />
+                </div>
               </form>
             </div>
             {avatarIsChanged ? <h2>story</h2> : <h2>Upload</h2>}
           </div>
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 }

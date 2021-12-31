@@ -6,7 +6,7 @@ const Sidebar = () => {
     user: { fullName, username, userId, following, docId },
   } = UseUser();
   return (
-    <div className="p-4">
+    <div className="sidebar">
       <User username={username} fullName={fullName} />
       <Suggestions
         userId={userId}

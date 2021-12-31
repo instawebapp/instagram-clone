@@ -19,26 +19,22 @@ export default function Story() {
     fetchData();
   }, [id]);
   return (
-    <div className="h-screen relative bg-black-light p-0 m-0">
+    <div className="story">
       {selectedStory !== null ? (
-        <>
-          <div className="absolute top-4 right-0 bg-black-light flex items-center justify-center w-16 text-gray-primary z-10 text-4xl font-bold">
+        <div>
+          <div className="close_icon_div">
             <Link to={ROUTES.DASHBOARD}>
               <div className="">
                 <IoClose />
               </div>
             </Link>
           </div>
-          <div className="flex h-5/6 w-full items-center justify-center rounded-lg">
-            <div className="h-full w-1/4 z-10  border border-gray-base mt-28">
-              <img
-                src={selectedStory.url}
-                alt="story"
-                className="w-full h-full"
-              />
+          <div className="display_story_section">
+            <div className="story_content">
+              <img src={selectedStory.url} alt="story" />
             </div>
           </div>
-        </>
+        </div>
       ) : null}
     </div>
   );

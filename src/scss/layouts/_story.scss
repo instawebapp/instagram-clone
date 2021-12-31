@@ -1,0 +1,36 @@
+.story {
+  position: relative;
+  height: 100vh;
+  background: $black-light;
+  padding: 0rem;
+  margin: 0rem;
+  .close_icon_div {
+    position: absolute;
+    top: 1rem;
+    right: 0%;
+    width: 4rem;
+    background: $black-light;
+    @include flexCenterCenter;
+    color: $gray-primary;
+    font-size: 2rem;
+    font-weight: bold;
+    z-index: 10;
+  }
+  .display_story_section {
+    @include flexCenterCenter;
+    height: 90%;
+    width: 100%;
+    border-radius: 0.5rem;
+    .story_content {
+      height: 100%;
+      width: 25%;
+      z-index: 10;
+      border: 1px solid $gray-base;
+      margin-top: 6rem;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

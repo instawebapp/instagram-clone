@@ -1,13 +1,33 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
+import { DEFAULT_IMAGE_PATH, LOGO } from "../constants/img_paths";
 import FirebaseContext from "../context/firebase";
 import UserContext from "../context/user";
 import { GetUserById } from "../services/firebase";
+import HomeIcon from "@mui/icons-material/Home";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import LogoutIcon from "@mui/icons-material/Logout";
+import Button from "./form/Button";
 const Header = () => {
   const { firebase } = useContext(FirebaseContext);
   const { user } = useContext(UserContext);
   const [userName, setUserName] = useState("");
+
+  const handleLogoutClick = (e) => {
+    firebase.auth().signOut();
+  };
+  const handleLogoutKey = (e) => {
+    if (e.key === "Enter") {
+      firebase.auth().signOut();
+    }
+  };
+  const handleLogin = (e) => {
+    console.log("Login...");
+  };
+  const handleSignUp = (e) => {
+    console.log("SignUp...");
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -21,101 +41,75 @@ const Header = () => {
     }
   }, [user]);
   return (
-    <header className="h-16 bg-white border-b border-gray-primary mb-8">
-      <div className="container mx-auto max-w-screen-lg h-full">
-        <div className="flex justify-between h-full">
-          <div className="flex items-center align-items cursor-pointer text-gray-700 text-center">
-            <h1 className="flex justify-center w-full">
-              <Link to={ROUTES.DASHBOARD}>
-                <img
-                  src="/images/logo.png"
-                  alt="Instagram logo"
-                  className="mt-2 w-1/2"
+    <header className="header">
+      <div className="header_container">
+        <div className="header_logo">
+          <h1>
+            <Link to={ROUTES.DASHBOARD}>
+              <img src={LOGO} alt="Instagram Logo" />
+            </Link>
+          </h1>
+        </div>
+        <div className="header_info">
+          {userName !== "" ? (
+            <div className="header_loggedIn_icons">
+              <Link to={ROUTES.DASHBOARD} aria-label="Dashboard">
+                <div className="icon">
+                  <HomeIcon style={{ color: "" }} />
+                </div>
+              </Link>
+              <Link to="/upload">
+                <div className="icon">
+                  <AddCircleOutlineIcon />
+                </div>
+              </Link>
+              <Button
+                btnType={"button"}
+                btnTitle={""}
+                btnClass={""}
+                icon={<LogoutIcon />}
+                handleClick={handleLogoutClick}
+                handleKey={handleLogoutKey}
+              />
+              <div className="header_user_avatar">
+                <Link to={`/p/${userName}`}>
+                  <img
+                    src={
+                      userName !== ""
+                        ? `${DEFAULT_IMAGE_PATH}`
+                        : `${DEFAULT_IMAGE_PATH}`
+                    }
+                    alt={
+                      userName !== "" ? `${userName} profile` : `user profile`
+                    }
+                  />
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <div className="header_loggedOut_btns">
+              <Link to={ROUTES.LOGIN}>
+                <Button
+                  btnType={"button"}
+                  btnTitle={"Log In"}
+                  btnClass={"btn login_btn"}
+                  icon={""}
+                  handleClick={handleLogin}
+                  handleKey={handleLogin}
                 />
               </Link>
-            </h1>
-          </div>
-          <div className="text-gray-700 text-center flex items-center h-full">
-            {userName !== "" ? (
-              <div className="flex items-center">
-                <Link to={ROUTES.DASHBOARD} aria-label="Dashboard">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-8 w-8  mr-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                    />
-                  </svg>
-                </Link>
-                <button
-                  type="button"
-                  title="SignOut"
-                  onClick={() => firebase.auth().signOut()}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      firebase.auth().signOut();
-                    }
-                  }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-8 w-8  mr-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                    />
-                  </svg>
-                </button>
-                <div className="flex items-center cursor-pointer">
-                  <Link to={`/p/${userName}`}>
-                    <img
-                      className="rounded-full h-8 w-8 flex"
-                      src={
-                        userName !== ""
-                          ? `/images/avatars/${userName.jpg}`
-                          : `images/avatars/default.png`
-                      }
-                      alt={
-                        userName !== "" ? `${userName} profile` : `user profile`
-                      }
-                    />
-                  </Link>
-                </div>
-              </div>
-            ) : (
-              <div className="flex items-center mt-1">
-                <Link to={ROUTES.LOGIN}>
-                  <button
-                    type="button"
-                    className="bg-blue-medium font-bold text-sm rounded text-white w-20 h-8"
-                  >
-                    Log In
-                  </button>
-                </Link>
-                <Link to={ROUTES.SIGN_UP}>
-                  <button
-                    type="button"
-                    className="font-bold text-sm rounded text-blue-medium  w-20 h-8"
-                  >
-                    Sign Up
-                  </button>
-                </Link>
-              </div>
-            )}
-          </div>
+              <Link to={ROUTES.SIGN_UP}>
+                <Button
+                  btnType={"button"}
+                  btnTitle={"Sign Up"}
+                  btnClass={"btn signup_btn"}
+                  icon={""}
+                  handleClick={handleSignUp}
+                  handleKey={handleSignUp}
+                />
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </header>

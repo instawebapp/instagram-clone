@@ -1,0 +1,12 @@
+.dashboard {
+  background: $gray-background;
+
+  .dashboard_section {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-gap: 1rem;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: $screen-lg;
+  }
+}

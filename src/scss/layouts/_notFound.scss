@@ -1,0 +1,12 @@
+.not_found_container {
+  background: $gray-background;
+  .section {
+    margin: 2rem auto;
+    max-width: $screen-lg;
+    .text {
+      text-align: center;
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
+}

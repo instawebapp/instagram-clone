@@ -43,6 +43,7 @@ module.exports = {
       sm: "640px",
       md: "768px",
       lg: "1024px",
+      extraLg: "1200px",
     },
     minWidth: {
       xl: "420px",
@@ -51,10 +52,28 @@ module.exports = {
       sm: "640px",
       md: "768px",
       lg: "1024px",
+      450: "450px",
+    },
+    maxHeight: {
+      1200: "1200px",
+    },
+    maxWidth: {
+      450: "450px",
     },
     boxShadow: {
       base: "3px 6px 6px rgba(0,0,0,0.1)",
       primary: "2px 4px 4px rgba(0,0,0,0.1)",
+    },
+    height: {
+      65: "65vh",
+      70: "70vh",
+      80: "80vh",
+      85: "85vh",
+    },
+    width: {
+      70: "70%",
+      60: "60%",
+      95: "95%",
     },
   },
   variants: {

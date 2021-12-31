@@ -1,0 +1,44 @@
+.uploaded_story_section,
+.upload_story_section {
+  @include flexColCenterCenter;
+  margin-right: 2rem;
+  .uploaded_story,
+  .upload_story {
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: $gray-primary;
+    margin-top: 0.5rem;
+    border: 2px solid $gray-primary;
+    img {
+      width: 100%;
+      height: 100%;
+      background: $white;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+}
+
+.upload_story_section {
+  .upload_story {
+    .form {
+      background: transparent;
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 100%;
+      .file {
+        width: 2rem;
+        height: 3rem;
+        overflow: hidden;
+        border-radius: 25%;
+        margin-top: 0.15rem;
+        cursor: pointer;
+        z-index: 10;
+      }
+    }
+  }
+}

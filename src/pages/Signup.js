@@ -3,6 +3,9 @@ import { useState, useEffect, useContext, useRef } from "react";
 import FirebaseContext from "../context/firebase";
 import * as ROUTES from "../constants/routes";
 import { DoesUsernameExist, createNewUserDocument } from "../services/firebase";
+import { LOGO, SIGNUP_POSTER } from "../constants/img_paths";
+import Input from "../components/form/Input";
+import Button from "../components/form/Button";
 const Signup = () => {
   const history = useHistory();
   const { firebase } = useContext(FirebaseContext);
@@ -13,21 +16,69 @@ const Signup = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const componentWillUnmount = useRef(false);
-  const isInValid =
-    userName === "" ||
-    fullName === "" ||
-    password === "" ||
-    emailAddress === "";
+
+  const handleUserName = (e) => {
+    setUserName(e.target.value);
+    console.log("username", e.target.value);
+  };
+
+  const handleFullName = (e) => {
+    setFullName(e.target.value);
+    console.log("full name", e.target.value);
+  };
+
+  const handleEmail = (e) => {
+    setEmailAddress(e.target.value);
+    console.log("email", e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+    console.log("password", e.target.value);
+  };
+
+  const handleSubmitClick = (e) => {
+    e.preventDefault();
+    handleSignup(e);
+  };
+  const handleSubmitKey = (e) => {
+    e.preventDefault();
+    if (e.key === "Enter") {
+      handleSignup(e);
+    }
+  };
 
   useEffect(() => {
+    if (error !== "") {
+      setTimeout(() => {
+        setError("");
+      }, 3000);
+    }
+    console.log("error");
+
     return () => {
+      clearTimeout();
       componentWillUnmount.current = true;
     };
-  }, []);
+  }, [error]);
 
   const handleSignup = async (e) => {
     e.preventDefault();
     let userId = "";
+    if (
+      userName === "" ||
+      fullName === "" ||
+      emailAddress === "" ||
+      password === ""
+    ) {
+      setError("please fill all details");
+      setUserName("");
+      setFullName("");
+      setEmailAddress("");
+      setPassword("");
+
+      return;
+    }
     const UsernameExist = await DoesUsernameExist(userName);
     if (!UsernameExist.length) {
       setIsLoading(true);
@@ -70,77 +121,73 @@ const Signup = () => {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <div className="container flex mx-auto max-w-screen-md    items-center h-screen">
-          <div className="flex w-0  invisible md:visible md:w-3/5">
-            <img
-              className="max-w-full w-full"
-              src="/images/iphone-with-profile.jpg"
-              alt="iphone with insta"
-            />
+        <div className="signup_container">
+          <div className="signup_poster">
+            <img src={SIGNUP_POSTER} alt="signup poster" />
           </div>
-          <div className="flex flex-col w-4/5 mx-auto md:w-2/5 ">
-            <div className="flex flex-col items-center bg-white border border-gray-primary p-4 mb-4">
-              <h1 className="flex justify-center w-full">
-                <img
-                  src="images/logo.png"
-                  alt="Instagram"
-                  className="mt-2 mb-4 w-1/2"
-                />
-              </h1>
+          <div className="signup_form_section">
+            <div className="signup_details_section">
+              <div className="logo">
+                <img src={LOGO} alt="Instagram" />
+              </div>
 
-              {error && (
-                <p className="text-red-primary text-center p-2 text-lg mb-2">
-                  {error}
-                </p>
-              )}
+              {error && <p className="error_message">{error}</p>}
 
-              <form method="post" onSubmit={handleSignup}>
-                <input
-                  aria-label="Enter your username"
-                  type="text"
-                  placeholder="Username"
-                  className="small md:text-sm text-gray-base w-full py-5 px-4 mr-3 h-2 border border-gray-primary rounded mb-3"
-                  onChange={({ target }) => setUserName(target.value)}
-                  value={userName}
+              <form method="post">
+                <Input
+                  inputType={"text"}
+                  inputClass={""}
+                  inputValue={userName}
+                  ariaLabel={"Enter your username"}
+                  inputLabel={""}
+                  labelClass={"hide"}
+                  placeHolder={"Username"}
+                  handleChange={handleUserName}
                 />
-                <input
-                  aria-label="Enter your Full Name"
-                  type="text"
-                  placeholder="Full Name"
-                  className="small md:text-sm text-gray-base w-full py-5 px-4 mr-3 h-2 border border-gray-primary rounded mb-3"
-                  onChange={({ target }) => setFullName(target.value)}
-                  value={fullName}
+                <Input
+                  inputType={"text"}
+                  inputClass={""}
+                  inputValue={fullName}
+                  ariaLabel={"Enter your Full Name"}
+                  inputLabel={""}
+                  labelClass={"hide"}
+                  placeHolder={"Full Name"}
+                  handleChange={handleFullName}
                 />
-                <input
-                  aria-label="Enter your email address"
-                  type="email"
-                  placeholder="Email address"
-                  className="small md:text-sm text-gray-base w-full py-5 px-4 mr-3 h-2 border border-gray-primary rounded mb-3"
-                  onChange={({ target }) => setEmailAddress(target.value)}
+                <Input
+                  inputType={"email"}
+                  inputClass={""}
+                  inputValue={emailAddress}
+                  ariaLabel={"Enter Email Address"}
+                  inputLabel={""}
+                  labelClass={"hide"}
+                  placeHolder={"Email address"}
+                  handleChange={handleEmail}
                 />
-                <input
-                  aria-label="Enter your password"
-                  type="password"
-                  placeholder="Password"
-                  className="small md:text-sm text-gray-base w-full py-5 px-4 mr-3 h-2 border border-gray-primary rounded mb-3"
-                  onChange={({ target }) => setPassword(target.value)}
-                  value={password}
+                <Input
+                  inputType={"password"}
+                  inputClass={""}
+                  inputValue={password}
+                  ariaLabel={"Enter Password"}
+                  inputLabel={""}
+                  labelClass={"hide"}
+                  placeHolder={"Password"}
+                  handleChange={handlePassword}
                 />
-                <button
-                  disabled={isInValid}
-                  type="submit"
-                  className={`small md:text-sm bg-blue-medium py-2 text-white w-full rounded  font-bold mb-3  ${
-                    isInValid && "opacity-50"
-                  }`}
-                >
-                  Sign Up
-                </button>
+                <Button
+                  btnType={"submit"}
+                  btnClass={"btn signup_btn"}
+                  btnTitle={"Sign Up"}
+                  icon={""}
+                  handleClick={handleSubmitClick}
+                  handleKey={handleSubmitKey}
+                />
               </form>
             </div>
-            <div className="flex justify-center items-center w-full p-4 bg-white border border-gray-primary">
-              <p className="small md:text-sm">
+            <div className="form_tags">
+              <p className="login_form_tag">
                 Have an account?
-                <Link to="/login" className="font-bold text-blue-medium ml-1">
+                <Link to={ROUTES.LOGIN} className="link">
                   Log In
                 </Link>
               </p>

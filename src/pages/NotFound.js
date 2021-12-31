@@ -6,9 +6,9 @@ const NotFound = () => {
   }, []);
 
   return (
-    <div className="bg-gray-background ">
-      <div className="mx-auto max-w-screen-lg">
-        <p className="text-center text-2xl">Not Found!</p>
+    <div className="not_found_container">
+      <div className="section">
+        <p className="text">Not Found!</p>
       </div>
     </div>
   );

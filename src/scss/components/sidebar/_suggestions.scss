@@ -1,0 +1,20 @@
+.suggestions_section {
+  @include flexCol;
+  border-radius: 50%;
+  .suggestions_title {
+    @include flexCenterBetween;
+    align-self: center;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    p {
+      font-weight: bold;
+      color: $gray-base;
+    }
+  }
+  .details {
+    display: grid;
+    grid-gap: 1.25rem;
+    margin-top: 1rem;
+  }
+}

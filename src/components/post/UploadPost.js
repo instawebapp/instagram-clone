@@ -1,6 +1,6 @@
 const UploadPost = () => {
   return (
-    <div className="w-full h-4/5 ">
+    <div className="upload_post">
       <p>post...</p>
     </div>
   );

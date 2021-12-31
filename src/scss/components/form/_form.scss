@@ -1,0 +1,20 @@
+.error_message {
+  color: $red-primary;
+  text-align: center;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.form_tags {
+  @include flexCenterCenter;
+  width: 100%;
+  padding: 1rem;
+  background: $white;
+  border: 1px solid $gray-primary;
+  .link {
+    font-weight: bold;
+    color: $blue-medium;
+    margin-left: 1rem;
+  }
+}
