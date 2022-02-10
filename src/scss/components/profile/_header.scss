@@ -8,6 +8,7 @@
   .user_profile_avatar {
     @include flexCenterCenter;
     width: 100%;
+    position: relative;
     img {
       width: 10rem;
       height: 10rem;

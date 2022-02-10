@@ -9,13 +9,15 @@ const Timeline = () => {
   console.log("photos", photos);
   useEffect(() => {
     const timer = setTimeout(() => {
+      console.log("aave che");
       if (!photos) {
+        console.log("aave che2");
         setTime(false);
       }
     }, 5000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [photos]);
   return (
     <div className="timeline">
       <Stories />

@@ -228,7 +228,7 @@ export async function uploadStories(file, filepath, userId, startTime) {
   const storageRef = firebase.storage().ref();
   //  Create a child
   const imagesRef = storageRef.child(filepath);
-  // imagesRef now points to 'images
+  // imagesRef now points to 'images'
   const uploadTask = imagesRef.put(file);
   uploadTask.on(
     "state_changed",

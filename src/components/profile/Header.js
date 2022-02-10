@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
 import useUser from "../../hooks/use-user";
@@ -11,6 +12,7 @@ export default function Header({
   photosCount,
   followerCount,
   setFollowerCount,
+  userAvatar,
   profile: {
     docId: profileDocId,
     userId: profileUserId,
@@ -65,13 +67,16 @@ export default function Header({
     <div className="user_profile_header">
       <div className="user_profile_avatar">
         {profileUsername ? (
-          <img
-            alt={`${fullName} profile picture`}
-            src={`/images/avatars/${profileUsername}.jpg`}
-            onError={(e) => {
-              e.target.src = DEFAULT_IMAGE_PATH;
-            }}
-          />
+          <div>
+            <Link to={"/cropper"}>Edit</Link>
+            <img
+              alt={`${fullName} profile picture`}
+              src={userAvatar}
+              onError={(e) => {
+                e.target.src = DEFAULT_IMAGE_PATH;
+              }}
+            />
+          </div>
         ) : (
           <Skeleton circle height={150} width={150} count={1} />
         )}

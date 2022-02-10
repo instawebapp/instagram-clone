@@ -16,7 +16,7 @@ export default function SuggestedProfile({
   const [followed, setFollowed] = useState(false);
 
   const handleFollowKey = (e) => {
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
       handleFollowUser();
     }
   };

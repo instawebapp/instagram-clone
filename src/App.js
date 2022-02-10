@@ -7,6 +7,7 @@ import ProtectedRoute from "./helpers/protected-route";
 import IsUserLoggedIn from "./helpers/is-user-logged-in";
 import Upload from "./pages/Upload";
 import Reels from "./pages/Reels";
+import UploadAvatar from "./pages/UploadAvatar";
 import "./assets/css/main.min.css";
 const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./pages/Signup"));
@@ -39,6 +40,7 @@ function App() {
             <ProtectedRoute user={user} path={ROUTES.DASHBOARD} exact>
               <Dashboard />
             </ProtectedRoute>
+            <Route path="/cropper" component={UploadAvatar} />
             <Route path={ROUTES.PROFILE} component={Profile} />
             <Route path="/stories/:id" component={Story} />
             <Route path="/upload" component={Upload} />

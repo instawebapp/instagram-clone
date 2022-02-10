@@ -13,7 +13,7 @@ const Header = () => {
   const { firebase } = useContext(FirebaseContext);
   const { user } = useContext(UserContext);
   const [userName, setUserName] = useState("");
-
+  const [userAvatar, setUserAvatar] = useState(null);
   const handleLogoutClick = (e) => {
     firebase.auth().signOut();
   };
@@ -32,8 +32,10 @@ const Header = () => {
   useEffect(() => {
     async function fetchData() {
       const response = await GetUserById(user.uid);
+      console.log(response);
       if (response) {
         setUserName(response.username);
+        setUserAvatar(response?.avatar?.avatarURL);
       }
     }
     if (user) {
@@ -66,7 +68,7 @@ const Header = () => {
               <Button
                 btnType={"button"}
                 btnTitle={""}
-                btnClass={""}
+                btnClass={"logout_btn"}
                 icon={<LogoutIcon />}
                 handleClick={handleLogoutClick}
                 handleKey={handleLogoutKey}
@@ -76,7 +78,7 @@ const Header = () => {
                   <img
                     src={
                       userName !== ""
-                        ? `${DEFAULT_IMAGE_PATH}`
+                        ? `${userAvatar}`
                         : `${DEFAULT_IMAGE_PATH}`
                     }
                     alt={

@@ -5,6 +5,7 @@ import Photos from "./Photos";
 import { getUserPhotosByUserId } from "../../services/firebase";
 
 export default function Profile({ user }) {
+  const userIMG = user.avatar.avatarURL;
   const reducer = (state, newState) => ({ ...state, ...newState });
   const initialState = {
     profile: {},
@@ -38,6 +39,7 @@ export default function Profile({ user }) {
         profile={profile}
         followerCount={followerCount}
         setFollowerCount={dispatch}
+        userAvatar={userIMG}
       />
       <Photos photosCollection={photosCollection} />
     </div>

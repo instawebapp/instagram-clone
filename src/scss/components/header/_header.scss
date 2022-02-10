@@ -40,6 +40,14 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        .logout_btn {
+          border: none;
+          background: transparent;
+          &:focus {
+            outline: none;
+            border: none;
+          }
+        }
         .icon {
           height: 2rem;
           width: 2rem;

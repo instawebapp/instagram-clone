@@ -25,9 +25,11 @@
 @import "./components/sidebar/suggestedProfile";
 @import "./components/profile/header";
 @import "./components/profile/photos";
+@import "./components/profile/editAvatar";
 @import "./components/reels/videoCard";
 @import "./components/reels/videoHeader";
 @import "./components/reels/videoFooter";
+@import "./helpers/cropper";
 
 @import "./layouts/login";
 @import "./layouts/signup";

@@ -89,7 +89,7 @@ export default function UploadStory() {
               <img src={uploadedStory.url} alt="khjhj" />
             </Link>
           </div>
-          <h2 className="">user</h2>
+          <h3 className="story_title">user</h3>
         </div>
       ) : (
         <div>
@@ -124,7 +124,11 @@ export default function UploadStory() {
                 </div>
               </form>
             </div>
-            {avatarIsChanged ? <h2>story</h2> : <h2>Upload</h2>}
+            {avatarIsChanged ? (
+              <h3 className="story_title">story</h3>
+            ) : (
+              <h3 className="story_title">Upload</h3>
+            )}
           </div>
         </div>
       )}

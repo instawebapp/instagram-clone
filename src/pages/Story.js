@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import * as ROUTES from "../constants/routes";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllStories } from "../services/firebase";
 export default function Story() {
   const [selectedStory, setSelectedStory] = useState(null);
