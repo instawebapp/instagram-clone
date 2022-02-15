@@ -23,6 +23,12 @@
 @import "./components/sidebar/user";
 @import "./components/sidebar/suggestions";
 @import "./components/sidebar/suggestedProfile";
+
+@import "./components/leftPanel/index";
+@import "./components/leftPanel/userProfile";
+@import "./components/leftPanel/tabs";
+@import "./components/leftPanel/explore";
+
 @import "./components/profile/header";
 @import "./components/profile/photos";
 @import "./components/profile/editAvatar";

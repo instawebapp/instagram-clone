@@ -1,12 +1,22 @@
-.dashboard {
-  background: $gray-background;
+.dashboard_container {
+  background: $secondary-background;
+  overflow-x: hidden;
+  width: 100vw;
+  height: 100vh;
+  // padding: 1rem;
+  // border-radius: 3rem;
 
-  .dashboard_section {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-gap: 1rem;
-    justify-content: space-between;
-    margin: 0 auto;
-    max-width: $screen-lg;
+  .dashboard {
+    background: $primary-background;
+    .dashboard_section {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 20% 55% 25%;
+      // grid-gap: 1rem;
+      justify-content: space-between;
+      margin: 0 auto;
+      // max-width: $screen-lg;
+    }
   }
 }

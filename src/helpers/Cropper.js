@@ -4,27 +4,34 @@ import "cropperjs/dist/cropper.css";
 import { Modal, Button } from "react-bootstrap";
 import { updateUserAvatar } from "../services/firebase/updateDocuments/updateUserAvatar";
 import UserContext from "../context/user";
+import { compress } from "./compress";
+import { GetUserById } from "../services/firebase";
 
 export default function CropperFunction({ imgSrc, fileName }) {
   const {
     user: { uid: userId = "" },
   } = useContext(UserContext);
-
   const [cropData, setCropData] = useState("#");
   const [cropper, setCropper] = useState(undefined);
   const [show, setShow] = useState(true);
   const [croppedImage, setCroppedImage] = useState(undefined);
   const [isSubmitting, setIsSubmitting] = useState(true);
+  const [username, setUserName] = useState("");
   const handleClose = () => setShow(false);
   // const handleShow = () => setShow(true);
 
   useEffect(() => {
-    console.log(croppedImage);
+    if (userId !== "" || userId !== null) {
+      GetUserById(userId).then((response) => {
+        setUserName(response.username);
+      });
+    }
+  }, []);
+
+  useEffect(() => {
     if (croppedImage !== undefined) {
-      const extension = croppedImage.name.split(".").slice(-1)[0];
-      let timestamp = new Date().getTime().toString();
-      const locationPath = `/users/avatars/${timestamp}.${extension}`;
-      const name = timestamp + "." + extension;
+      const name = croppedImage.name;
+      const locationPath = `/users/avatars/${name}`;
       const collectionName = "users";
       if (isSubmitting) {
         updateUserAvatar(
@@ -40,19 +47,21 @@ export default function CropperFunction({ imgSrc, fileName }) {
   }, [croppedImage]);
 
   const getCroppedImageFile = (blob) => {
-    let ex = blob.type.split("/")[1];
-    let name = fileName.split(".")[0];
-    let filename = name + "." + ex;
-
+    let filename = username + ".jpeg";
+    console.log(filename);
     let file = new File([blob], filename, {
       type: blob.type,
       lastModified: Date.now(),
     });
-    setCroppedImage(file);
+    // for user avatar
+    const width = 230;
+    const height = 230;
+    compress(file, width, height).then((res) => {
+      setCroppedImage(res);
+    });
   };
 
   const getCropData = async () => {
-    console.log("ennnn");
     if (typeof cropper !== undefined) {
       let data = cropper.getCroppedCanvas().toDataURL();
       setCropData(data);
@@ -71,7 +80,6 @@ export default function CropperFunction({ imgSrc, fileName }) {
     var context = canvas.getContext("2d");
     var width = sourceCanvas.width;
     var height = sourceCanvas.height;
-
     canvas.width = width;
     canvas.height = height;
     context.imageSmoothingEnabled = false;
@@ -104,9 +112,10 @@ export default function CropperFunction({ imgSrc, fileName }) {
         <Modal.Body>
           <Cropper
             dragMode="move"
-            style={{ height: 400 }}
-            zoomTo={0.5}
+            style={{ height: 400, borderRadius: "50%" }}
+            zoomTo={1}
             initialAspectRatio={1}
+            aspectRatio={1}
             preview=".img-preview"
             src={imgSrc}
             viewMode={3}
@@ -121,10 +130,12 @@ export default function CropperFunction({ imgSrc, fileName }) {
               setCropper(instance);
             }}
             guides={false}
-            cropBoxMovable={false}
+            cropBoxMovable={true}
             cropBoxResizable={false}
             zoomOnWheel={true}
             toggleDragModeOnDblclick={false}
+            minCropBoxHeight={100} //280px
+            minCropBoxWidth={100} // 280px
           />
         </Modal.Body>
         <Modal.Footer></Modal.Footer>

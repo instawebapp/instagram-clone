@@ -9,8 +9,8 @@ export default function UploadAvatar() {
 
   const isValidImageFile = (file) => {
     let size = Math.round(file.size / 1024);
-    //2000kb ~ 2mb
-    if (VALID_IMAGE_FORMATS.includes(file.type) && size <= 2000) {
+    //5000kb ~ 5mb
+    if (VALID_IMAGE_FORMATS.includes(file.type) && size <= 5000) {
       return true;
     }
     return false;

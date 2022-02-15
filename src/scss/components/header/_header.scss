@@ -2,10 +2,11 @@
   height: 4rem;
   background: $white;
   border-bottom: 1px solid $gray-primary;
-  margin-bottom: 2rem;
+  // margin-bottom: 2rem;
   .header_container {
     margin: 0 auto;
-    max-width: $screen-lg;
+    width: 100%;
+    // max-width: $screen-lg;
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -34,6 +35,7 @@
       display: flex;
       align-items: center;
       height: 100%;
+      margin-right: 2.5rem;
       .header_loggedIn_icons {
         height: 100%;
         width: 100%;

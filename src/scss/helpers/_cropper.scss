@@ -31,22 +31,27 @@
   align-items: center;
 }
 
-.cropper-crop-box {
-  position: relative;
-  width: 60% !important;
-  height: 65% !important;
-  left: 5%;
-  border-radius: 50%;
-}
+.cropper-view-box,
 .cropper-face {
   border-radius: 50%;
 }
 
-.cropper-view-box {
-  border-radius: 50%;
-  position: relative;
-  width: 100%;
-}
+// .cropper-crop-box {
+//   position: relative;
+//   width: 60% !important;
+//   height: 65% !important;
+//   left: 5%;
+//   border-radius: 50%;
+// }
+// .cropper-face {
+//   border-radius: 50%;
+// }
+
+// .cropper-view-box {
+//   border-radius: 50%;
+//   position: relative;
+//   width: 100%;
+// }
 
 // .custom_size {
 //   max-width: 30vw;

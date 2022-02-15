@@ -23,6 +23,7 @@ export async function updateUserAvatar(
       // on complete upload task
       uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
         updateUserDoc(fileName, userId, collectionName, downloadURL);
+        console.log(downloadURL);
         return downloadURL;
       });
     }
