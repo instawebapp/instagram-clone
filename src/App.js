@@ -21,7 +21,7 @@ function App() {
   return (
     <UserContext.Provider value={{ user }}>
       <Router>
-        <Suspense fallback={<p>Loading..</p>}>
+        <Suspense fallback={<p>Loading...</p>}>
           <Switch>
             <IsUserLoggedIn
               user={user}
