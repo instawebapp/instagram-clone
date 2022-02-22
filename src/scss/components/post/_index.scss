@@ -1,6 +1,9 @@
 .post_container {
   background: $white;
   border: 1px solid $gray-primary;
-  margin-bottom: 2.5rem;
   grid-column: 4/4;
+  // padding: 0 2rem;
+  width: 85%;
+  margin: 0rem auto;
+  margin-bottom: 2.5rem;
 }

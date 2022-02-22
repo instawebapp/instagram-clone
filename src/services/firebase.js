@@ -6,15 +6,19 @@ export async function createNewUserDocument(
   emailAddress
 ) {
   try {
-    const result = await firebase.firestore().collection("users").add({
-      userId: id,
-      username: userName.toLowerCase(),
-      fullName: fullName,
-      emailAddress: emailAddress.toLowerCase(),
-      following: [],
-      followers: [],
-      dateCreated: Date.now(),
-    });
+    const result = await firebase
+      .firestore()
+      .collection("users")
+      .add({
+        userId: id,
+        username: userName.toLowerCase(),
+        fullName: fullName,
+        emailAddress: emailAddress.toLowerCase(),
+        following: [],
+        followers: [],
+        dateCreated: Date.now(),
+        avatar: { avatarURL: "", fileName: "" },
+      });
     if (result) {
       return true;
     }

@@ -33,7 +33,7 @@ export default function Profile({ user }) {
   }, [user, user.username]);
   console.log(photosCollection, "PC");
   return (
-    <div>
+    <div className="profile_container">
       <Header
         photosCount={photosCollection ? photosCollection.length : 0}
         profile={profile}

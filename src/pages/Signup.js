@@ -3,9 +3,12 @@ import { useState, useEffect, useContext, useRef } from "react";
 import FirebaseContext from "../context/firebase";
 import * as ROUTES from "../constants/routes";
 import { DoesUsernameExist, createNewUserDocument } from "../services/firebase";
-import { LOGO, SIGNUP_POSTER } from "../constants/img_paths";
+// import { LOGO, SIGNUP_POSTER } from "../constants/img_paths";
 import Input from "../components/form/Input";
 import Button from "../components/form/Button";
+import { BiUserCheck } from "react-icons/bi";
+import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import { HiOutlineMail, HiOutlineLockClosed } from "react-icons/hi";
 const Signup = () => {
   const history = useHistory();
   const { firebase } = useContext(FirebaseContext);
@@ -123,13 +126,18 @@ const Signup = () => {
       ) : (
         <div className="signup_container">
           <div className="signup_poster">
-            <img src={SIGNUP_POSTER} alt="signup poster" />
+            <img src={"images/login.svg"} alt="signup poster" />
           </div>
           <div className="signup_form_section">
             <div className="signup_details_section">
-              <div className="logo">
+              <h2>Welcome :&#41; </h2>
+              <p className="text">
+                to keep connected with us please login with your personal
+                inormation by email address and password
+              </p>
+              {/* <div className="logo">
                 <img src={LOGO} alt="Instagram" />
-              </div>
+              </div> */}
 
               {error && <p className="error_message">{error}</p>}
 
@@ -139,40 +147,45 @@ const Signup = () => {
                   inputClass={""}
                   inputValue={userName}
                   ariaLabel={"Enter your username"}
-                  inputLabel={""}
-                  labelClass={"hide"}
-                  placeHolder={"Username"}
+                  inputLabel={"username :"}
+                  labelClass={"input_label"}
                   handleChange={handleUserName}
+                  icon={<BiUserCheck />}
+                  iconClass={"username_icon"}
                 />
                 <Input
                   inputType={"text"}
                   inputClass={""}
                   inputValue={fullName}
                   ariaLabel={"Enter your Full Name"}
-                  inputLabel={""}
-                  labelClass={"hide"}
-                  placeHolder={"Full Name"}
+                  inputLabel={"Full Name:"}
+                  labelClass={"input_label"}
                   handleChange={handleFullName}
+                  icon={<MdOutlineDriveFileRenameOutline />}
+                  iconClass={"username_icon"}
                 />
+
                 <Input
                   inputType={"email"}
                   inputClass={""}
                   inputValue={emailAddress}
                   ariaLabel={"Enter Email Address"}
-                  inputLabel={""}
-                  labelClass={"hide"}
-                  placeHolder={"Email address"}
+                  inputLabel={"Email Address:"}
+                  labelClass={"input_label"}
                   handleChange={handleEmail}
+                  icon={<HiOutlineMail />}
+                  iconClass={"email_icon"}
                 />
                 <Input
                   inputType={"password"}
                   inputClass={""}
                   inputValue={password}
                   ariaLabel={"Enter Password"}
-                  inputLabel={""}
-                  labelClass={"hide"}
-                  placeHolder={"Password"}
+                  inputLabel={"Password:"}
+                  labelClass={"input_label"}
                   handleChange={handlePassword}
+                  icon={<HiOutlineLockClosed />}
+                  iconClass={"password"}
                 />
                 <Button
                   btnType={"submit"}
@@ -182,15 +195,15 @@ const Signup = () => {
                   handleClick={handleSubmitClick}
                   handleKey={handleSubmitKey}
                 />
+                <div className="form_tags">
+                  <p className="signup_form_tag">
+                    Have an account?
+                    <Link to={ROUTES.LOGIN} className="link">
+                      Log In
+                    </Link>
+                  </p>
+                </div>
               </form>
-            </div>
-            <div className="form_tags">
-              <p className="login_form_tag">
-                Have an account?
-                <Link to={ROUTES.LOGIN} className="link">
-                  Log In
-                </Link>
-              </p>
             </div>
           </div>
         </div>

@@ -4,14 +4,13 @@
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   font-size: 1rem;
+  position: relative;
 }
 
 .form_tags {
   @include flexCenterCenter;
   width: 100%;
-  padding: 1rem;
-  background: $white;
-  border: 1px solid $gray-primary;
+  height: 100%;
   .link {
     font-weight: bold;
     color: $blue-medium;

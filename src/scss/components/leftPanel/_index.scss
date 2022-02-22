@@ -1,8 +1,14 @@
 .leftPanel_container {
   // background: $primary-background;
   background: $white;
-  width: 100%;
+  // width: 100%;
   height: 100%;
   @include flexColCenter;
   padding: 1rem 0.5rem;
+  position: fixed;
+  left: 3%;
+  width: 22%;
+  top: 4rem;
+  // overflow: hidden !important;
+  // top: 0;
 }

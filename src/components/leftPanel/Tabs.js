@@ -4,11 +4,12 @@ import { BsFilePerson } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import { FiSettings } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import * as ROUTES from "../../constants/routes";
 export default function Tabs() {
   return (
     <section className="tabs_section">
       <ul className="tabs_list">
-        <Link>
+        <Link to={ROUTES.DASHBOARD}>
           <li>
             <div className="link">
               <span className="icon">
@@ -28,8 +29,8 @@ export default function Tabs() {
             </span>
             <span className="link">People</span>
           </div>
-          <div className="notification">
-            <span className="number">0</span>
+          <div className="invisible notification">
+            <span className=" number">0</span>
           </div>
         </li>
         <li>
@@ -39,7 +40,7 @@ export default function Tabs() {
             </span>
             <span className="link">Photos</span>
           </div>
-          <div className="notification">
+          <div className="invisible notification">
             <span className="number">0</span>
           </div>
         </li>
@@ -50,7 +51,7 @@ export default function Tabs() {
             </span>
             <span className="link">Profile</span>
           </div>
-          <div className="notification">
+          <div className="invisible notification">
             <span className="number">0</span>
           </div>
         </li>
@@ -61,7 +62,7 @@ export default function Tabs() {
             </span>
             <span className="link">Settings</span>
           </div>
-          <div className="notification">
+          <div className="invisible notification">
             <span className="number">0</span>
           </div>
         </li>

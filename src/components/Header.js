@@ -73,7 +73,7 @@ const Header = () => {
                 handleClick={handleLogoutClick}
                 handleKey={handleLogoutKey}
               />
-              <div className="header_user_avatar">
+              {/* <div className="header_user_avatar">
                 <Link to={`/p/${userName}`}>
                   <img
                     src={
@@ -86,7 +86,7 @@ const Header = () => {
                     }
                   />
                 </Link>
-              </div>
+              </div> */}
             </div>
           ) : (
             <div className="header_loggedOut_btns">

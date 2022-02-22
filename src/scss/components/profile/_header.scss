@@ -4,7 +4,9 @@
   grid-gap: 1rem;
   justify-content: space-between;
   margin: 0 auto;
-  max-width: $screen-lg;
+  position: relative;
+  left: 10%;
+  // max-width: $screen-lg;
   .user_profile_avatar {
     @include flexCenterCenter;
     width: 100%;

@@ -1,14 +1,16 @@
 .signup_container {
   @include flexCenterCenter;
-  margin: 0 auto;
-  height: 100vh;
-  width: 100%;
-  max-width: $screen-md;
+  margin: 1rem auto;
+  height: 95vh;
+  width: 95vw;
+  background: $gray-background;
+  border-radius: 0.75rem;
   overflow: hidden;
   .signup_poster {
     display: flex;
     width: 60%;
     img {
+      padding: 1rem;
       width: 100%;
       max-width: 100%;
     }
@@ -16,14 +18,27 @@
 
   .signup_form_section {
     @include flexCol;
-    width: 80%;
+    width: 50%;
     margin: 0 auto;
+    margin: 0rem 2rem;
+    background: $white;
+    box-shadow: 3px 3px 6px $gray-extraLight;
     .signup_details_section {
-      background: $white;
-      border: 1px solid $gray-primary;
       padding: 1rem 2rem;
-      margin-bottom: 1rem;
       border-radius: 0.25rem;
+      .text {
+        margin: 1rem 0;
+        font-size: 1.1rem;
+        color: $secondary-font-color-light;
+      }
+      .login_link {
+        margin: 1rem 0;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        font-size: 1.1rem;
+        color: $secondary-font-color-light;
+      }
       .logo {
         @include flexJustifyCenter;
         width: 100%;
@@ -34,14 +49,23 @@
           width: 50%;
         }
       }
+
       form {
         width: 100%;
         .signup_btn {
           font-size: 1.3rem;
-          margin: 1rem auto;
-          background: $blue-medium;
+          margin: 0rem auto;
+          margin-top: 2rem;
+          background: $secondary-blue-color;
           color: $white;
-          width: 50%;
+          width: auto;
+          padding: 0.5rem 1rem;
+          border-radius: $radius;
+        }
+        .form_tags {
+          .signup_form_tag {
+            margin-top: 2rem;
+          }
         }
       }
     }

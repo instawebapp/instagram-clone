@@ -2,13 +2,16 @@ import usePhotos from "../hooks/use-photos";
 import Skeleton from "react-loading-skeleton";
 import Post from "./post";
 import Stories from "./stories";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 const Timeline = () => {
   let { photos } = usePhotos();
   const [time, setTime] = useState(true);
   console.log("photos", photos);
+  const myRef = useRef(null);
+  const executeScroll = () => myRef.current.scrollIntoView();
   useEffect(() => {
     const timer = setTimeout(() => {
+      executeScroll();
       console.log("aave che");
       if (!photos) {
         console.log("aave che2");
@@ -19,7 +22,7 @@ const Timeline = () => {
     return () => clearTimeout(timer);
   }, [photos]);
   return (
-    <div className="timeline">
+    <div className="timeline" ref={myRef}>
       <Stories />
       {!photos && time ? (
         <Skeleton count={4} width={640} height={500} className="skeleton" />

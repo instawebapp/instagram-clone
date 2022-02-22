@@ -2,9 +2,11 @@ import { useHistory, Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import FirebaseContext from "../context/firebase";
 import * as ROUTES from "../constants/routes";
-import { LOGIN_POSTER, LOGO } from "../constants/img_paths";
+// import { LOGIN_POSTER, LOGO } from "../constants/img_paths";
 import Input from "../components/form/Input";
 import Button from "../components/form/Button";
+import { HiOutlineMail, HiOutlineLockClosed } from "react-icons/hi";
+
 const Login = () => {
   const history = useHistory();
   const { firebase } = useContext(FirebaseContext);
@@ -59,13 +61,19 @@ const Login = () => {
   return (
     <div className="login_container">
       <div className="login_poster">
-        <img src={LOGIN_POSTER} alt="login poster" />
+        {/* <img src={LOGIN_POSTER} alt="login poster" /> */}
+        <img src={"images/login.svg"} alt="login poster" />
       </div>
       <div className="login_form_section">
         <div className="login_details_section">
-          <div className="logo">
+          <h2>Welcome back :&#41; </h2>
+          <p className="text">
+            to keep connected with us please login with your personal inormation
+            by email address and password
+          </p>
+          {/* <div className="logo">
             <img src={LOGO} alt="Instagram-Logo" />
-          </div>
+          </div> */}
 
           {error && <p className="error_message">{error}</p>}
 
@@ -75,21 +83,26 @@ const Login = () => {
               inputClass={""}
               inputValue={emailAddress}
               ariaLabel={"Enter your email address"}
-              inputLabel={""}
-              labelClass={"hide"}
-              placeHolder={"Email address"}
+              inputLabel={"Email Address :"}
+              labelClass={"input_label"}
               handleChange={handleEmail}
+              icon={<HiOutlineMail />}
+              iconClass={"email_icon"}
             />
             <Input
               inputType={"password"}
               inputClass={""}
               inputValue={password}
-              ariaLabel={"Enter your password"}
-              inputLabel={""}
-              labelClass={"hide"}
-              placeHolder="Password"
+              ariaLabel={"Enter your password :"}
+              inputLabel={"Password :"}
+              labelClass={"input_label"}
               handleChange={handlePassword}
+              icon={<HiOutlineLockClosed />}
+              iconClass={"password"}
             />
+            <Link>
+              <p className="signup_link">forgot password?</p>
+            </Link>
             <Button
               btnType={"submit"}
               btnClass={"btn login_btn"}
@@ -98,15 +111,15 @@ const Login = () => {
               handleClick={handleSubmitClick}
               handleKey={handleSubmitKey}
             />
+            <div className="form_tags">
+              <p className="login_form_tag">
+                Don't have an account?
+                <Link to={ROUTES.SIGN_UP} className="link">
+                  Sign Up
+                </Link>
+              </p>
+            </div>
           </form>
-        </div>
-        <div className="form_tags">
-          <p className="login_form_tag">
-            Don't have an account?
-            <Link to={ROUTES.SIGN_UP} className="link">
-              Sign Up
-            </Link>
-          </p>
         </div>
       </div>
     </div>

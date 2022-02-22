@@ -1,8 +1,13 @@
 .header {
-  height: 4rem;
   background: $white;
   border-bottom: 1px solid $gray-primary;
   // margin-bottom: 2rem;
+  position: fixed;
+  top: 0;
+  left: 0%;
+  height: 4rem;
+  width: 100%;
+  padding: 0 1.25rem;
   .header_container {
     margin: 0 auto;
     width: 100%;
@@ -45,6 +50,7 @@
         .logout_btn {
           border: none;
           background: transparent;
+          margin-left: 0.5rem;
           &:focus {
             outline: none;
             border: none;

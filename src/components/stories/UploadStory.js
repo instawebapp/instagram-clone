@@ -6,6 +6,7 @@ import { uploadStories, getUploadedStory } from "../../services/firebase";
 import UserContext from "../../context/user";
 import { Link } from "react-router-dom";
 import FileInput from "../form/FileInput";
+import { DEFAULT_IMAGE_PATH } from "../../constants/img_paths";
 export default function UploadStory() {
   const {
     user: { uid: userId },
@@ -113,7 +114,7 @@ export default function UploadStory() {
           </Modal>
           <div className="upload_story_section">
             <div className="upload_story">
-              <img src="/images/avatars/orwell.jpg" alt="khjhj" />
+              <img src={DEFAULT_IMAGE_PATH} alt="jay" />
               <form className="form">
                 <div className="file">
                   <FileInput

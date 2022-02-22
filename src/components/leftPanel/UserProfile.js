@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { DEFAULT_IMAGE_PATH } from "../../constants/img_paths";
 import UserContext from "../../context/user";
 import { GetUserById } from "../../services/firebase";
-import * as ROUTES from "../../constants/routes";
+// import * as ROUTES from "../../constants/routes";
 import { Link } from "react-router-dom";
 export default function UserProfile() {
   const { user } = useContext(UserContext);
@@ -31,7 +31,9 @@ export default function UserProfile() {
         <img src={userAvatar || DEFAULT_IMAGE_PATH} alt="user-avatar" />
       </div>
       <div className="user_details">
-        <h2 className="user_fullname">{userFullName}</h2>
+        <Link to={`/p/${userName}`}>
+          <h2 className="user_fullname">{userFullName}</h2>
+        </Link>
         <Link to={`/p/${userName}`}>
           <h4 className="username">@{userName}</h4>
         </Link>

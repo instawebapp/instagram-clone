@@ -5,22 +5,29 @@ export default function Input({
   ariaLable,
   inputLabel,
   labelClass,
-  placeHolder,
   handleChange,
+  icon,
+  iconClass,
 }) {
   return (
     <div className="input_section">
-      <label htmlFor={`${inputLabel}`} className={labelClass}>
-        {inputLabel}
-      </label>
-      <input
-        aria-label={ariaLable}
-        className={`input ${inputClass}`}
-        type={inputType}
-        placeholder={placeHolder}
-        onChange={handleChange}
-        value={inputValue === "" ? "" : inputValue}
-      />
+      <div className="icon_section">
+        <div className={`icon ${iconClass}`}>{icon}</div>
+      </div>
+      <div className="input_details">
+        <input
+          aria-label={ariaLable}
+          className={`input ${inputClass}`}
+          type={inputType}
+          onChange={handleChange}
+          value={inputValue === "" ? "" : inputValue}
+          autoComplete={true}
+          required={true}
+        />
+        <label htmlFor={`input_label ${inputLabel}`} className={labelClass}>
+          {inputLabel}
+        </label>
+      </div>
     </div>
   );
 }
