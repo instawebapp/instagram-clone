@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/routes";
-import { DEFAULT_IMAGE_PATH, LOGO } from "../constants/img_paths";
+import { LOGO } from "../constants/img_paths";
 import FirebaseContext from "../context/firebase";
 import UserContext from "../context/user";
 import { GetUserById } from "../services/firebase";
@@ -13,7 +13,7 @@ const Header = () => {
   const { firebase } = useContext(FirebaseContext);
   const { user } = useContext(UserContext);
   const [userName, setUserName] = useState("");
-  const [userAvatar, setUserAvatar] = useState(null);
+  // const [userAvatar, setUserAvatar] = useState(null);
   const handleLogoutClick = (e) => {
     firebase.auth().signOut();
   };
@@ -35,7 +35,7 @@ const Header = () => {
       console.log(response);
       if (response) {
         setUserName(response.username);
-        setUserAvatar(response?.avatar?.avatarURL);
+        // setUserAvatar(response?.avatar?.avatarURL);
       }
     }
     if (user) {

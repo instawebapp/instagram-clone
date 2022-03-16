@@ -4,7 +4,11 @@ export default function EditAvatar(props) {
     <div className="editAvatar_container">
       <section className="img_section">
         <div className="cropper">
-          <CropperFunction imgSrc={props.fileSrc} fileName={props.fileName} />
+          <CropperFunction
+            imgSrc={props.fileSrc}
+            setImageString={props.setImageString}
+            fileName={props.fileName}
+          />
         </div>
       </section>
     </div>

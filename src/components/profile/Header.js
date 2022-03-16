@@ -20,8 +20,10 @@ export default function Header({
     followers,
     following,
     username: profileUsername,
+    bio,
   },
 }) {
+  console.log(bio);
   const { user: loggedInUser } = useContext(UserContext);
   const { user } = useUser(loggedInUser?.uid);
   const [isFollowingProfile, setIsFollowingProfile] = useState(null);
@@ -63,15 +65,23 @@ export default function Header({
     }
   }, [user?.username, profileUserId]);
 
+  const handleSubmitClick = (e) => {
+    // e.preventDefault();
+  };
+  const handleSubmitKey = (e) => {
+    // e.preventDefault();
+    if (e.key === "Enter") {
+    }
+  };
+
   return (
     <div className="user_profile_header">
       <div className="user_profile_avatar">
         {profileUsername ? (
           <div>
-            <Link to={"/cropper"}>Edit</Link>
             <img
               alt={`${fullName} profile picture`}
-              src={userAvatar}
+              src={userAvatar || DEFAULT_IMAGE_PATH}
               onError={(e) => {
                 e.target.src = DEFAULT_IMAGE_PATH;
               }}
@@ -82,8 +92,27 @@ export default function Header({
         )}
       </div>
       <div className="user_profile_details">
+        <div className="edit_profile">
+          <Link to={"/cropper"}>
+            <Button
+              btnType={"button"}
+              btnClass={"btn edit_btn"}
+              btnTitle={"Edit Profile"}
+              icon={""}
+              handleClick={handleSubmitClick}
+              handleKey={handleSubmitKey}
+            />
+          </Link>
+        </div>
         <div className="info">
-          <p className="text">{profileUsername}</p>
+          <div>
+            <p className="text">@{profileUsername}</p>
+            <div className="username">
+              <p className="fullname">
+                {!fullName ? <Skeleton count={1} height={24} /> : fullName}
+              </p>
+            </div>
+          </div>
           {activeBtnFollow && isFollowingProfile === null ? (
             <Skeleton count={1} width={80} height={32} />
           ) : (
@@ -98,6 +127,18 @@ export default function Header({
               />
             )
           )}
+        </div>
+
+        <div className="bio">
+          <p>{bio?.text}</p>
+          {bio?.hashtaglist.length > 0 &&
+            bio?.hashtaglist.map((item, index) => {
+              return (
+                <span className="hashtag" key={index}>
+                  #{item}
+                </span>
+              );
+            })}
         </div>
         <div className="count_list">
           {!followers || !following ? (
@@ -116,11 +157,6 @@ export default function Header({
               </p>
             </div>
           )}
-        </div>
-        <div className="username">
-          <p className="fullname">
-            {!fullName ? <Skeleton count={1} height={24} /> : fullName}
-          </p>
         </div>
       </div>
     </div>

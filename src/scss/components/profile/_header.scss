@@ -19,16 +19,38 @@
     }
   }
   .user_profile_details {
-    @include flexColCenterCenter;
+    p {
+      margin-bottom: 0rem !important;
+    }
+    margin-top: 1rem;
+    // @include flexColCenterCenter;
+    .edit_profile {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      .icon {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-right: 0.75rem;
+      }
+      .edit_btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+      }
+    }
     grid-column: 2/4;
     .info {
       width: 100%;
       @include flexItemsCenter;
       .text {
         font-size: 1.5rem;
-        line-height: 2rem;
+        // line-height: 2rem;
         margin-right: 1rem;
       }
+    }
+    .bio {
+      margin: 1rem 0;
     }
     .count_list {
       display: flex;
@@ -48,10 +70,15 @@
     }
     .username {
       width: 100%;
-      margin-top: 1rem;
+      // margin-top: 0.2rem;
       .fullname {
         font-weight: 600;
       }
     }
   }
+}
+
+.hashtag {
+  margin-right: 0.5rem;
+  color: $sky-blue-color;
 }

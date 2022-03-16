@@ -2,10 +2,12 @@ import { GrHomeRounded } from "react-icons/gr";
 import { MdOutlinePhotoSizeSelectActual } from "react-icons/md";
 import { BsFilePerson } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
-import { FiSettings } from "react-icons/fi";
+import { MdOutlineAnalytics } from "react-icons/md";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
-export default function Tabs() {
+import UserContext from "../../context/user";
+import { GetUserById } from "../../services/firebase";
+export default function Tabs({ userName }) {
   return (
     <section className="tabs_section">
       <ul className="tabs_list">
@@ -17,12 +19,12 @@ export default function Tabs() {
               </span>
               <span className="link">Home</span>
             </div>
-            <div className="notification">
+            <div className="invisible notification">
               <span className="number">0</span>
             </div>
           </li>
         </Link>
-        <li>
+        <li className="hide_tab">
           <div className="link">
             <span className="icon">
               <BsFilePerson />
@@ -33,7 +35,7 @@ export default function Tabs() {
             <span className=" number">0</span>
           </div>
         </li>
-        <li>
+        <li className="hide_tab">
           <div className="link">
             <span className="icon">
               <MdOutlinePhotoSizeSelectActual />
@@ -44,23 +46,25 @@ export default function Tabs() {
             <span className="number">0</span>
           </div>
         </li>
-        <li>
+        <Link to={`/p/${userName}`}>
+          <li className="hide_tab">
+            <div className="link">
+              <span className="icon">
+                <BiUser />
+              </span>
+              <span className="link">Profile</span>
+            </div>
+            <div className="invisible notification">
+              <span className="number">0</span>
+            </div>
+          </li>
+        </Link>
+        <li className="hide_tab">
           <div className="link">
             <span className="icon">
-              <BiUser />
+              <MdOutlineAnalytics />
             </span>
-            <span className="link">Profile</span>
-          </div>
-          <div className="invisible notification">
-            <span className="number">0</span>
-          </div>
-        </li>
-        <li>
-          <div className="link">
-            <span className="icon">
-              <FiSettings />
-            </span>
-            <span className="link">Settings</span>
+            <span className="link">Analytics</span>
           </div>
           <div className="invisible notification">
             <span className="number">0</span>

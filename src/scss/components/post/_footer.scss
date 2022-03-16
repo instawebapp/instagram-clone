@@ -1,7 +1,18 @@
 .post_footer {
   padding: 0.5rem 1rem 1rem;
+  font-size: 1rem;
   .username {
     margin-right: 0.25rem;
     font-weight: bold;
+  }
+  .caption {
+    margin: 0.25rem 0;
+  }
+  .hashtag {
+    margin-right: 0.5rem;
+    color: $sky-blue-color;
+  }
+  .links {
+    padding: 0.5rem 0;
   }
 }

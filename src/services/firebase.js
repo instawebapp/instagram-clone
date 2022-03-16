@@ -1,4 +1,26 @@
 import { firebase, FieldValue } from "../lib/firebase";
+
+// console.log("yes1");
+// firebase
+//   .firestore()
+//   .collection("users")
+//   .where("followers", "==", ["2"])
+//   .get()
+//   .then((querySnapshot) => {
+//     querySnapshot.forEach((doc) => {
+//       console.log("yes2");
+//       console.log(doc.id, " => ", doc.data());
+//     });
+//   });
+
+// firebase
+//   .firestore()
+//   .collection("users")
+//   .doc("EJF0T0ZBvr8MNGAKicJK")
+//   .get()
+//   .then((i) => {
+//     console.log(i.data());
+//   });
 export async function createNewUserDocument(
   id,
   userName,
@@ -326,11 +348,12 @@ export async function getAllStoriesExceptUserUploadedStory(userId) {
 
 export async function updatePostList(
   userId,
-  addPost,
   downloadURL,
   createdTime,
-  caption
+  caption,
+  links
 ) {
+  console.log(caption, links);
   try {
     // here photos -> post
     await firebase
@@ -338,6 +361,7 @@ export async function updatePostList(
       .collection("photos")
       .add({
         caption: caption,
+        links: links,
         comments: [],
         dateCreated: Number(createdTime),
         imageSrc: downloadURL,
@@ -350,7 +374,7 @@ export async function updatePostList(
   }
 }
 
-export async function uploadPost(file, filepath, userId, time, caption) {
+export async function uploadPost(file, filepath, userId, time, caption, links) {
   // Get a reference to the storage service, which is used to create references in your storage bucket
   const storageRef = firebase.storage().ref();
   //  Create a child
@@ -367,10 +391,36 @@ export async function uploadPost(file, filepath, userId, time, caption) {
       // on complte upload task
       uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
         // update  post list
-        let addPost = true;
-        updatePostList(userId, addPost, downloadURL, time, caption);
+        // let addPost = true;
+        updatePostList(userId, downloadURL, time, caption, links);
         return downloadURL;
       });
     }
   );
+}
+
+export async function updateProfile(userName, bioData) {
+  let id = "";
+  try {
+    await firebase
+      .firestore()
+      .collection("users")
+      .where("username", "==", userName)
+      .get()
+      .then((items) => {
+        items.docs.map((doc) => {
+          id = doc.id;
+        });
+        // });
+      });
+    if (id !== "") {
+      await firebase
+        .firestore()
+        .collection("users")
+        .doc(id)
+        .update({ bio: bioData });
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
 }

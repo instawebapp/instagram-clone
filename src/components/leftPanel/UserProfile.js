@@ -4,26 +4,26 @@ import UserContext from "../../context/user";
 import { GetUserById } from "../../services/firebase";
 // import * as ROUTES from "../../constants/routes";
 import { Link } from "react-router-dom";
-export default function UserProfile() {
-  const { user } = useContext(UserContext);
-  const [userName, setUserName] = useState("");
-  const [userFullName, setUserFullName] = useState("");
-  const [userAvatar, setUserAvatar] = useState(null);
+export default function UserProfile({ userAvatar, userName, userFullName }) {
+  // const { user } = useContext(UserContext);
+  // const [userName, setUserName] = useState("");
+  // const [userFullName, setUserFullName] = useState("");
+  // const [userAvatar, setUserAvatar] = useState(null);
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await GetUserById(user.uid);
-      console.log(response);
-      if (response) {
-        setUserName(response?.username);
-        setUserFullName(response?.fullName);
-        setUserAvatar(response?.avatar?.avatarURL);
-      }
-    }
-    if (user) {
-      fetchData();
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const response = await GetUserById(user.uid);
+  //     console.log(response);
+  //     if (response) {
+  //       setUserName(response?.username);
+  //       setUserFullName(response?.fullName);
+  //       setUserAvatar(response?.avatar?.avatarURL);
+  //     }
+  //   }
+  //   if (user) {
+  //     fetchData();
+  //   }
+  // }, [user]);
 
   return (
     <section className="userProfile_section">

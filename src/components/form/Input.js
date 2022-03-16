@@ -21,8 +21,8 @@ export default function Input({
           type={inputType}
           onChange={handleChange}
           value={inputValue === "" ? "" : inputValue}
-          autoComplete={true}
-          required={true}
+          // autoComplete={true}
+          // required={true}
         />
         <label htmlFor={`input_label ${inputLabel}`} className={labelClass}>
           {inputLabel}

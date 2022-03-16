@@ -1,10 +1,12 @@
 import PropTypes from "prop-types";
 
 export default function Image({ src, caption }) {
-  return <img className="post_img" src={src} alt={caption} />;
+  const { text } = caption;
+
+  return <img className="post_img" src={src} alt={text} />;
 }
 
 Image.propTypes = {
-  caption: PropTypes.string,
+  caption: PropTypes.object,
   src: PropTypes.string,
 };

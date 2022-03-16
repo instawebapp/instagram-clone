@@ -1,5 +1,3 @@
-import { DEFAULT_IMAGE_PATH } from "../../constants/img_paths";
-
 export default function Explore() {
   return (
     <section className="explore_section">

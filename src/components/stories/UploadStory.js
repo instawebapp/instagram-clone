@@ -2,7 +2,11 @@ import { Modal, Button } from "react-bootstrap";
 import { VALID_IMAGE_FORMATS } from "../../constants/const";
 import { useContext, useEffect, useState, useRef } from "react";
 import { compress } from "../../helpers/compress";
-import { uploadStories, getUploadedStory } from "../../services/firebase";
+import {
+  uploadStories,
+  getUploadedStory,
+  GetUserById,
+} from "../../services/firebase";
 import UserContext from "../../context/user";
 import { Link } from "react-router-dom";
 import FileInput from "../form/FileInput";
@@ -22,7 +26,9 @@ export default function UploadStory() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const compressAndUpload = () => {
-    compress(avatarFile).then((f) => {
+    const width = 540;
+    const height = 360;
+    compress(avatarFile, width, height).then((f) => {
       const extension = f.name.split(".").slice(-1)[0];
       let timestamp = new Date().getTime().toString();
       const filepath = `images/${timestamp}.${extension}`;
@@ -81,6 +87,21 @@ export default function UploadStory() {
     };
   }, [userId, storyAvailable]);
 
+  const [userAvatar, setUserAvatar] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await GetUserById(userId);
+      console.log(response);
+      if (response) {
+        setUserAvatar(response?.avatar?.avatarURL);
+      }
+    }
+    if (userId) {
+      fetchData();
+    }
+  }, [userId]);
+
   return (
     <div>
       {storyAvailable && uploadedStory ? (
@@ -114,16 +135,16 @@ export default function UploadStory() {
           </Modal>
           <div className="upload_story_section">
             <div className="upload_story">
-              <img src={DEFAULT_IMAGE_PATH} alt="jay" />
-              <form className="form">
-                <div className="file">
-                  <FileInput
+              <img src={userAvatar || DEFAULT_IMAGE_PATH} alt="jay" />
+              <div className="file">
+                <input type="file" onChange={handleUpload} />
+                {/* <FileInput
                     inputClass=""
                     ariaLable="Upload Story"
                     handleChange={handleUpload}
-                  />
-                </div>
-              </form>
+                    className="input_file"
+                  /> */}
+              </div>
             </div>
             {avatarIsChanged ? (
               <h3 className="story_title">story</h3>

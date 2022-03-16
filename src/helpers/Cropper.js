@@ -7,17 +7,20 @@ import UserContext from "../context/user";
 import { compress } from "./compress";
 import { GetUserById } from "../services/firebase";
 
-export default function CropperFunction({ imgSrc, fileName }) {
+export default function CropperFunction({ imgSrc, fileName, setImageString }) {
   const {
     user: { uid: userId = "" },
   } = useContext(UserContext);
-  const [cropData, setCropData] = useState("#");
+  // const [cropData, setCropData] = useState("#");
   const [cropper, setCropper] = useState(undefined);
   const [show, setShow] = useState(true);
   const [croppedImage, setCroppedImage] = useState(undefined);
   const [isSubmitting, setIsSubmitting] = useState(true);
   const [username, setUserName] = useState("");
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setImageString("");
+  };
   // const handleShow = () => setShow(true);
 
   useEffect(() => {
@@ -26,7 +29,7 @@ export default function CropperFunction({ imgSrc, fileName }) {
         setUserName(response.username);
       });
     }
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     if (croppedImage !== undefined) {
@@ -42,9 +45,10 @@ export default function CropperFunction({ imgSrc, fileName }) {
           collectionName
         );
       }
+      setImageString("");
       setIsSubmitting(false);
     }
-  }, [croppedImage]);
+  }, [croppedImage, isSubmitting, userId]);
 
   const getCroppedImageFile = (blob) => {
     let filename = username + ".jpeg";
@@ -64,7 +68,7 @@ export default function CropperFunction({ imgSrc, fileName }) {
   const getCropData = async () => {
     if (typeof cropper !== undefined) {
       let data = cropper.getCroppedCanvas().toDataURL();
-      setCropData(data);
+      // setCropData(data);
       let croppedCanvas = cropper.getCroppedCanvas();
       let roundCanvas = null;
       roundCanvas = getRoundedCanvas(croppedCanvas);

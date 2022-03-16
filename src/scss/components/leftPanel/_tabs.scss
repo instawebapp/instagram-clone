@@ -42,9 +42,15 @@
       // }
       transition: all 0.3s linear;
     }
+    li:hover {
+      cursor: pointer;
+    }
   }
 }
 
 .invisible {
   visibility: hidden;
+}
+.hide_tab {
+  border: none !important;
 }
