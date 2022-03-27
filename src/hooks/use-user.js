@@ -8,7 +8,6 @@ export default function UseUser() {
     async function getUserObjByUserId() {
       //    we need a function that we can call firebase service that gets the user data based on the id
       const response = await GetUserById(user.uid);
-      console.log(user.uid, response);
       setActiveUser(response);
     }
     if (user?.uid) {

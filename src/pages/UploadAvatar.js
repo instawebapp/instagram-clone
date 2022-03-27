@@ -29,7 +29,7 @@ export default function UploadAvatar() {
   const [imageString, setImageString] = useState("");
   const [bio, setBio] = useState("");
   const [isSubmitting, setisSubmitting] = useState(false);
-  const [uploadedFileAvatar, setUploadedFileAvatar] = useState(null);
+  const [uploadedFileAvatar, setUploadedFileAvatar] = useState(false);
   const isValidImageFile = (file) => {
     let size = Math.round(file.size / 1024);
     //5000kb ~ 5mb
@@ -71,7 +71,6 @@ export default function UploadAvatar() {
   }, [file]);
 
   if (imageString !== "") {
-    console.log(fileName);
     return (
       <EditAvatar
         fileSrc={imageString}
@@ -91,6 +90,7 @@ export default function UploadAvatar() {
     updateProfile(userName, bioData);
     history.push(`/p/${userName}`);
     setisSubmitting(false);
+    setUploadedFileAvatar(true);
   };
   const handleSubmitKey = (e) => {
     e.preventDefault();
@@ -114,7 +114,7 @@ export default function UploadAvatar() {
           <p>It is very easy.</p>
         </section>
         <section className="upload_section">
-          {uploadedFileAvatar !== null ? (
+          {uploadedFileAvatar === true ? (
             <div className="fileBox">
               <p>file is uploading...</p>
             </div>

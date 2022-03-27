@@ -32,7 +32,6 @@ const Header = () => {
   useEffect(() => {
     async function fetchData() {
       const response = await GetUserById(user.uid);
-      console.log(response);
       if (response) {
         setUserName(response.username);
         // setUserAvatar(response?.avatar?.avatarURL);

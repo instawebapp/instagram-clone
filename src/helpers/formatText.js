@@ -1,5 +1,3 @@
-import { hasFunction } from "./hasFunction";
-
 export function formatText(str) {
   let text = `${str}`.replace(/ +/g, " ").trim();
   let len = text.length;

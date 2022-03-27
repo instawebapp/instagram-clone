@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import * as ROUTES from "../constants/routes";
 import { useEffect, useState } from "react";
-import { getAllStories } from "../services/firebase";
+import { getAllStories, updateStoryViews } from "../services/firebase";
 export default function Story() {
   const [selectedStory, setSelectedStory] = useState(null);
   let { id } = useParams();
@@ -18,6 +18,9 @@ export default function Story() {
     }
     fetchData();
   }, [id]);
+  const handleLoad = async () => {
+    await updateStoryViews(id);
+  };
   return (
     <div className="story">
       {selectedStory !== null ? (
@@ -31,7 +34,7 @@ export default function Story() {
           </div>
           <div className="display_story_section">
             <div className="story_content">
-              <img src={selectedStory.url} alt="story" />
+              <img src={selectedStory.url} alt="story" onLoad={handleLoad} />
             </div>
           </div>
         </div>

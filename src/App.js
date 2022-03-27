@@ -8,6 +8,7 @@ import IsUserLoggedIn from "./helpers/is-user-logged-in";
 import Upload from "./pages/Upload";
 import Reels from "./pages/Reels";
 import UploadAvatar from "./pages/UploadAvatar";
+import Analytics from "./pages/Analytics";
 import "./assets/css/main.min.css";
 const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./pages/Signup"));
@@ -45,6 +46,8 @@ function App() {
             <Route path="/stories/:id" component={Story} />
             <Route path="/upload" component={Upload} />
             <Route path="/reels" component={Reels} />
+            <Route path={ROUTES.ANALYTICS} component={Analytics} />
+
             <Route path={ROUTES.NOT_FOUND} component={NotFound} />
           </Switch>
         </Suspense>

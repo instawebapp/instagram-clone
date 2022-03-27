@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../context/user";
 import { compress } from "../helpers/compress";
 import { VALID_IMAGE_FORMATS } from "../constants/const";
@@ -6,16 +6,18 @@ import { uploadPost } from "../services/firebase";
 import Button from "../components/form/Button";
 import { BsPlusSquareFill } from "react-icons/bs";
 import { formatText } from "../helpers/formatText";
+import { useHistory } from "react-router-dom";
+import * as ROUTES from "../constants/routes";
 export default function Upload(avatar) {
   const {
     user: { uid: userId },
   } = useContext(UserContext);
+  const history = useHistory();
   const [isSubmitting, setisSubmitting] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [uploadedFileAvatar, setUploadedFileAvatar] = useState(null);
   const [caption, setCaption] = useState("");
   const [captionText, setCaptionText] = useState("");
-  const [hashtagText, setHashtagText] = useState(false);
   const [linkTagArray, setLinkTagArray] = useState([]);
   const [singleLinkText, setSingleLinkText] = useState("");
   const [totalLinks, setTotalLinks] = useState([]);
@@ -46,6 +48,7 @@ export default function Upload(avatar) {
         captionData,
         linksData
       );
+      history.push(ROUTES.DASHBOARD);
     });
   };
 
@@ -80,7 +83,7 @@ export default function Upload(avatar) {
   }
   const AddLinkTag = () => {
     if (
-      linkTagCounter == 0 ||
+      linkTagCounter === 0 ||
       (linkTagCounter !== 0 && singleLinkText !== "")
     ) {
       // link tag counter
@@ -108,22 +111,22 @@ export default function Upload(avatar) {
   };
 
   const handleSubmitClick = (e) => {
-    // handleSumbit(e);
+    handleSumbit(e);
     //for the last link text , we don't press + button so AddLinkTag can'nt called, we can't get last links text by totalLinks in the submit method , so we return the list in which last link text also added bcoz yet singleLinkText contains some data
     let linksData = collectLinks();
     setSingleLinkText("");
     let captionData = formatText(captionText);
     setCaption(captionData);
     setLinks(linksData);
-    // handleSumbit(e, captionData, linksData);
+    handleSumbit(e, captionData, linksData);
     console.log(uploadedFile);
-    console.log(captionData);
-    console.log(linksData);
+    console.log(caption);
+    console.log(links);
   };
 
   const handleSubmitKey = (e) => {
     if (e.key === "Enter") {
-      // handleSumbit(e);
+      handleSumbit(e);
       console.log("Submit", e);
     }
   };
@@ -166,7 +169,7 @@ export default function Upload(avatar) {
                 rows={7}
                 cols={52}
                 placeholder="Write a caption"
-                className={`${hashtagText ? "caption_text" : "caption_text"}`}
+                className="caption_text"
                 onChange={handleTextChange}
               ></textarea>
             </div>

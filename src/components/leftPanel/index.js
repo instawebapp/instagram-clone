@@ -13,7 +13,6 @@ export default function LeftPanel() {
   useEffect(() => {
     async function fetchData() {
       const response = await GetUserById(user.uid);
-      console.log(response);
       if (response) {
         setUserName(response?.username);
         setUserFullName(response?.fullName);

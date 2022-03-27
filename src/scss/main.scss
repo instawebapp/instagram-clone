@@ -37,6 +37,11 @@
 @import "./components/reels/videoCard";
 @import "./components/reels/videoHeader";
 @import "./components/reels/videoFooter";
+
+@import "./components/analytics/index";
+@import "./components/analytics/overview";
+@import "./components/analytics/chart";
+
 @import "./helpers/cropper";
 
 @import "./layouts/login";
@@ -47,5 +52,6 @@
 @import "./layouts/story";
 @import "./layouts/upload";
 @import "./layouts/editProfile";
+@import "./layouts/analytics";
 
 @import "./layouts/notFound";

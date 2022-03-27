@@ -26,9 +26,9 @@ export default function SingleStory() {
   }, [userId, storiesAvailable]);
 
   return (
-    <div>
+    <div className="story_container">
       {stories.length > 0 && storiesAvailable ? (
-        <div>
+        <div className="stories_section">
           {stories.map((item, index) => {
             return (
               <div className="single_story_section" key={index}>

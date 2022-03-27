@@ -1,0 +1,13 @@
+.analytics {
+  // background: $gray-background;
+  .analytics_section {
+    position: relative;
+    margin: 3rem auto;
+    top: 4rem;
+    max-width: $screen-lg;
+    // min-height: 60%;
+    background: #fff;
+    border-radius: 0.25rem;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.05);
+  }
+}

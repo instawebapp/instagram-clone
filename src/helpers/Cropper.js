@@ -48,7 +48,7 @@ export default function CropperFunction({ imgSrc, fileName, setImageString }) {
       setImageString("");
       setIsSubmitting(false);
     }
-  }, [croppedImage, isSubmitting, userId]);
+  }, [croppedImage, isSubmitting, userId, setImageString]);
 
   const getCroppedImageFile = (blob) => {
     let filename = username + ".jpeg";

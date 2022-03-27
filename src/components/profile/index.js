@@ -31,7 +31,6 @@ export default function Profile({ user }) {
       getProfileInfoAndPhotos();
     }
   }, [user, user.username]);
-  console.log(photosCollection, "PC");
   return (
     <div className="profile_container">
       <Header

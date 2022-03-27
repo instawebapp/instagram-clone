@@ -21,14 +21,13 @@ export default function Post({ content }) {
   useEffect(() => {
     async function fetchData() {
       const response = await GetUserById(user.uid);
-      console.log(response);
       setuserDetails(response);
     }
     if (counter) {
       fetchData();
     }
     setCounter(false);
-  }, []);
+  }, [counter, user.uid]);
 
   return (
     <div className="post_container">
@@ -44,6 +43,8 @@ export default function Post({ content }) {
         username={content.username}
         caption={content.caption}
         links={content.links}
+        docId={content.docId}
+        userId={user.uid}
       />
       <Comments
         docId={content.docId}

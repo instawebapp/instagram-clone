@@ -1,8 +1,14 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-export default function Footer({ caption, username, links }) {
+import { updateLinkViews } from "../../services/firebase";
+
+export default function Footer({ caption, username, links, docId, userId }) {
   const { text } = caption;
   const { hashtaglist } = caption;
+
+  const handleClick = async (e) => {
+    await updateLinkViews(docId, userId);
+  };
+
   return (
     <div className="post_footer">
       <div className="username">{username}</div>
@@ -19,7 +25,13 @@ export default function Footer({ caption, username, links }) {
         links.map((item, index) => {
           return (
             <div className="links" key={index}>
-              <a key={index} href={item} target={"_blank"}>
+              <a
+                key={index}
+                href={item}
+                target={"_blank"}
+                rel={"noreferrer"}
+                onClick={handleClick}
+              >
                 {item}
               </a>
             </div>

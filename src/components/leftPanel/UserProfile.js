@@ -1,7 +1,4 @@
-import { useContext, useState, useEffect } from "react";
 import { DEFAULT_IMAGE_PATH } from "../../constants/img_paths";
-import UserContext from "../../context/user";
-import { GetUserById } from "../../services/firebase";
 // import * as ROUTES from "../../constants/routes";
 import { Link } from "react-router-dom";
 export default function UserProfile({ userAvatar, userName, userFullName }) {

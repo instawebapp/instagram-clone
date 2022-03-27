@@ -275,7 +275,6 @@ export async function uploadStories(file, filepath, userId, startTime) {
 }
 
 export async function getUploadedStory(userId) {
-  console.log("nooo");
   try {
     const result = await firebase
       .firestore()
@@ -331,7 +330,6 @@ export async function getAllStories() {
 }
 
 export async function getAllStoriesExceptUserUploadedStory(userId) {
-  console.log("yesss");
   try {
     let result = await firebase.firestore().collection("stories").get();
     if (result) {
@@ -409,7 +407,7 @@ export async function updateProfile(userName, bioData) {
       .get()
       .then((items) => {
         items.docs.map((doc) => {
-          id = doc.id;
+          return (id = doc.id);
         });
         // });
       });
@@ -423,4 +421,25 @@ export async function updateProfile(userName, bioData) {
   } catch (err) {
     console.log(err.message);
   }
+}
+
+export async function updateLinkViews(docId, userId) {
+  await firebase
+    .firestore()
+    .collection("views")
+    .add({ docId: docId, userId: userId });
+}
+
+export async function getLinkViews() {
+  let result = await firebase.firestore().collection("views").get();
+  return result.docs.map((doc) => doc.data());
+}
+
+export async function updateStoryViews(userId) {
+  await firebase.firestore().collection("storyviews").add({ userId: userId });
+}
+
+export async function getStoryViews() {
+  let result = await firebase.firestore().collection("storyviews").get();
+  return result.docs.map((doc) => doc.data());
 }

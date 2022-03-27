@@ -9,7 +9,6 @@ import {
 } from "../../services/firebase";
 import UserContext from "../../context/user";
 import { Link } from "react-router-dom";
-import FileInput from "../form/FileInput";
 import { DEFAULT_IMAGE_PATH } from "../../constants/img_paths";
 export default function UploadStory() {
   const {
@@ -92,7 +91,6 @@ export default function UploadStory() {
   useEffect(() => {
     async function fetchData() {
       const response = await GetUserById(userId);
-      console.log(response);
       if (response) {
         setUserAvatar(response?.avatar?.avatarURL);
       }
